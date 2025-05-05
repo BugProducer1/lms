@@ -57,7 +57,7 @@
                         <h6 class="mb-3">Main Menu</h6>
                         <ul class="mb-3 pb-1">
                             <li>
-                                <a href="dashboard"
+                                <a href="/instructor/dashboard"
                                     class="d-inline-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}"><i
                                         class="isax isax-grid-35 me-2"></i>Dashboard</a>
                             </li>
