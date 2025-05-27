@@ -63,76 +63,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="course-title d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-xl flex-shrink-0 me-2"><img
-                                        src="{{ asset('img/instructor/instructor-table-01.jpg') }}" alt="Img"></a>
-                                <div>
-                                    <p class="fw-medium"><a href="coursedetails">Complete HTML,
-                                            CSS and Javascript<br> Course</a></p>
+                    @foreach ($courses as $course)
+                        <tr>
+                            <td>
+                                <div class="course-title d-flex align-items-center">
+                                    <a href="{{ route('admin.coursedetails', ['id' => $course->id]) }}"
+                                        class="avatar avatar-xl flex-shrink-0 me-2">
+                                        {{-- Display base64 image --}}
+                                        @if (Str::startsWith($course->CourseMedia, 'data:image'))
+                                            <img src="{{ $course->CourseMedia }}" alt="Course Image">
+                                        @else
+                                            {{-- If CourseMedia is a path, use asset or Storage --}}
+                                            <img src="{{ asset('storage/' . $course->CourseMedia) }}" alt="Course Image">
+                                        @endif
+                                    </a>
+                                    <div>
+                                        <p class="fw-medium">
+                                            <a href="{{ route('admin.coursedetails', ['id' => $course->id]) }}">
+                                                {{ $course->Title }}
+                                            </a>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>0</td>
-                        <td>Published</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="course-title d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-xl flex-shrink-0 me-2"><img
-                                        src="{{ asset('img/instructor/instructor-table-02.jpg') }}" alt="Img"></a>
-                                <div>
-                                    <p class="fw-medium"><a href="course-details.html">Complete Course
-                                            on Fullstack Web<br> Developer</a></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>Published</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="course-title d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-xl flex-shrink-0 me-2"><img
-                                        src="assets/img/instructor/instructor-table-03.jpg" alt="Img"></a>
-                                <div>
-                                    <p class="fw-medium"><a href="course-details.html">Data Science
-                                            Fundamentals and<br> Advanced Bootcampr</a></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>Published</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="course-title d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-xl flex-shrink-0 me-2"><img
-                                        src="assets/img/instructor/instructor-table-04.jpg" alt="Img"></a>
-                                <div>
-                                    <p class="fw-medium"><a href="course-details.html">Master
-                                            Microservices with Spring Boot<br> and Spring Cloud</a></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>1</td>
-                        <td>Published</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="course-title d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-xl flex-shrink-0 me-2"><img
-                                        src="assets/img/instructor/instructor-table-05.jpg" alt="Img"></a>
-                                <div>
-                                    <p class="fw-medium"><a href="course-details.html">Information
-                                            About UI/UX Design<br> Degree</a></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>0</td>
-                        <td>Published</td>
-                    </tr>
+                            </td>
+                            <td>0</td> {{-- You can replace this with dynamic data like number of lessons --}}
+                            <td>Published</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

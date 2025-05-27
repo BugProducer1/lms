@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -16,16 +19,19 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcomepage');
 });
 
+Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('users.coursedetails');
 
 Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(function(){
-    Route::get('/dashboard', fn() => view('admin.dashboard'));
 
-    Route::get('/coursedetails', function(){
-        return view('admin/coursedetails');
-    });
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+
+
+    Route::get('/', [CourseController::class, 'dashboard'])->name('instructor.home');
+    Route::get('/dashboard', [CourseController::class, 'dashboard'])->name('instructor.dasboard');
+    Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('admin.coursedetails');
     Route::get('/instructorprofile', function(){
         return view('admin.profile');
     })->name('instructor.profile');
@@ -48,15 +54,33 @@ Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(func
 });
 
 Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function(){
-    Route::get('/', fn() => view('student.dashboard'));
-   Route::get('/dashboard', fn() => view('student.dashboard'));
+
+    Route::post('/courses/{course}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
+    Route::get('/', [StudentController::class, 'myCourses'])->name('student.mycourses');
+    Route::get('/dashboard', [StudentController::class, 'myCourses'])->name('student.dashboard');
+    Route::get('/quizattemps', [StudentController::class, 'quizAttemps'])->name('student.quizattemps');
+
+
+    Route::post('/quizquestion/{course}/submit', [QuizController::class, 'submitQuiz'])
+        ->name('student.quiz.submit');
+
+    // Route::get('/quizquestion', fn() => view('student.quizquestion'))->name('student.quizquestion');
+    Route::get('/quizquestion/{course}', [StudentController::class, 'quizQuestion'])->name('student.quizquestion');
+
+//    Route::get('/dashboard', fn() => view('student.dashboard'));
    Route::get('/enrolledcourses', fn() => view('student.enrolledcourses'))->name('student.enrolledcourses');
-   Route::get('/quizattemps', fn() => view('student.quizattemps'))->name('student.quizattemps');
-   Route::get('/quizquestion', fn() => view('student.quizquestion'))->name('student.quizquestion');
+
+//    Route::get('/quizattemps', fn() => view('student.quizattemps'))->name('student.quizattemps');
+
+
    Route::get('/settings', fn() => view('student.settings'))->name('student.settings');
    Route::get('/changepassword', fn() => view('student.changepassword'))->name('student.changepassword');
    Route::get('/coursedetails', fn() => view('student.coursedetails'))->name('student.coursedetails');
    Route::get('/coursewatch', fn() => view('student.coursewatch'))->name('student.coursewatch');
+
+   Route::get('/studentprofile', function(){
+        return view('admin.profile');
+    })->name('student.profile');
 });
 
 

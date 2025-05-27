@@ -130,9 +130,6 @@
 <script src="{{ asset('plugins/theia-sticky-sidebar/ResizeSensor.js') }}" type="text/javascript"></script>
 <script src="{{ asset('plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}" type="text/javascript"></script>
 
-<!-- Custom JS -->
-<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
-
 <!-- Select2 JS -->
 <script src="{{asset('plugins/select2/js/select2.min.js')}}" type="94bd056a916da8ee2507ef31-text/javascript"></script>
 
@@ -140,7 +137,11 @@
 <script src="{{asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}" type="94bd056a916da8ee2507ef31-text/javascript"></script>
 
 <!-- Summernote JS -->
-<script src="{{asset('plugins/summernote/summernote-lite.min.js')}}" type="94bd056a916da8ee2507ef31-text/javascript"></script>
+<script src="{{ asset('plugins/summernote/summernote-lite.min.js') }}"></script>
+
+
+<!-- Custom JS -->
+<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 
 <!-- Cloudflare Scripts -->
 <script src="{{ asset('js/rocket-loader.min.js') }}" data-cf-settings="1a2148dee39d0d4d3306bada-|49" defer></script>

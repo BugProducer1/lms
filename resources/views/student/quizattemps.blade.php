@@ -7,65 +7,23 @@
         <div class="page-title d-flex align-items-center justify-content-between">
             <h5>My Quiz Attempts</h5>
         </div>
-        <div class="d-flex align-items-center justify-content-between border p-3 mb-3 rounded-2">
-            <div>
-                <h6 class="mb-1"><a href="{{ route('student.quizquestion') }}">Information About UI/UX Design Degree</a>
-                </h6>
-                <p class="fs-14">Number of Questions : 05</p>
+        @forelse ($courses as $course)
+            <div class="d-flex align-items-center justify-content-between border p-3 mb-3 rounded-2">
+                <div>
+                    <h6 class="mb-1"><a
+                            href="{{ route('student.quizquestion', ['course' => $course->id]) }}">{{ $course->Title }}</a>
+                    </h6>
+                    <p class="fs-14">Number of Questions : {{ $course->questions_count }}</p>
+                </div>
+                <div>
+                    <a href="{{ route('student.quizquestion', ['course' => $course->id]) }}" class="arrow-next"><i
+                            class="isax isax-arrow-right-1"></i></a>
+                </div>
             </div>
-            <div>
-                <a href="{{ route('student.quizquestion') }}" class="arrow-next"><i class="isax isax-arrow-right-1"></i></a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between border p-3 pb-3 mb-3 rounded-2">
-            <div>
-                <h6 class="mb-1"><a href="{{ route('student.quizquestion') }}">Learn JavaScript and Express to become a
-                        Expert</a>
-                </h6>
-                <p class="fs-14">Number of Questions : 10</p>
-            </div>
-            <div>
-                <a href="{{ route('student.quizquestion') }}" class="arrow-next"><i class="isax isax-arrow-right-1"></i></a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between border p-3 pb-3 mb-3 rounded-2">
-            <div>
-                <h6 class="mb-1"><a href="student-quiz-questions.html">Introduction to Python Programming</a></h6>
-                <p class="fs-14">Number of Questions : 08</p>
-            </div>
-            <div>
-                <a href="student-quiz-questions.html" class="arrow-next"><i class="isax isax-arrow-right-1"></i></a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between border p-3 pb-3 mb-3 rounded-2">
-            <div>
-                <h6 class="mb-1"><a href="student-quiz-questions.html">Build Responsive Websites with HTML5 and CSS3</a>
-                </h6>
-                <p class="fs-14">Number of Questions : 05</p>
-            </div>
-            <div>
-                <a href="student-quiz-questions.html" class="arrow-next"><i class="isax isax-arrow-right-1"></i></a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between border p-3 pb-3 mb-3 rounded-2">
-            <div>
-                <h6 class="mb-1"><a href="student-quiz-questions.html">Information About Photoshop Design Degree</a></h6>
-                <p class="fs-14">Number of Questions : 10</p>
-            </div>
-            <div>
-                <a href="student-quiz-questions.html" class="arrow-next"><i class="isax isax-arrow-right-1"></i></a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between border p-3 rounded-2">
-            <div>
-                <h6 class="mb-1"><a href="student-quiz-questions.html">C# Developers Double Your Coding with Visual
-                        Studio</a></h6>
-                <p class="fs-14">Number of Questions : 07</p>
-            </div>
-            <div>
-                <a href="student-quiz-questions.html" class="arrow-next"><i class="isax isax-arrow-right-1"></i></a>
-            </div>
-        </div>
+
+        @empty
+            <p class="text-center">No Quiz</p>
+        @endforelse
         <!-- /pagination -->
         <div class="row align-items-center mt-3">
             <div class="col-md-2">

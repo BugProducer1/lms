@@ -60,7 +60,7 @@
                                         class="isax isax-grid-35 me-2"></i>Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{ route('instructor.profile') }}"
+                                <a href="{{ route('student.profile') }}"
                                     class="d-inline-flex align-items-center {{ Request::is('instructorprofile') ? 'active' : '' }}"><i
                                         class="fa-solid fa-user me-2 "></i>My
                                     Profile</a>

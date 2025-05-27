@@ -44,11 +44,13 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <!-- Summernote JS -->
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-lite.min.css') }}">
 </head>
 
 <body>
     <!-- Main Wrapper -->
-    <div class="main-wrapper">
+    <div class="main-wrapper" style="min-height: 880px">
 
         <!-- Header -->
         {{-- <header class="header-two">

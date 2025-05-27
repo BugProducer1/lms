@@ -369,27 +369,59 @@ Version      : 1.0
 	// Wizard
 
 	$(document).ready(function () {
-        let progressVal = 0;
-        let businessType = 0;
+        $('#step-0').removeClass('d-none').show();
+        $(".next_btn").click(function () {
+            let $current = $(this).closest('fieldset');
+            $current.addClass('d-none');
+            $current.next('fieldset').removeClass('d-none');
 
-		$(".next_btn").click(function () {
-			$(this).parent().parent().parent().next().fadeIn('slow');
-			$(this).parent().parent().parent().css({
-				'display': 'none'
-			});
-			progressVal = progressVal + 1;
-			$('.progress-active').removeClass('progress-active').addClass('progress-activated').next().addClass('progress-active');
-		});
+            updateProgress();
+        });
 
-		$(".prev_btn").click(function () {
-			$(this).parent().parent().parent().prev().fadeIn('slow');
-			$(this).parent().parent().parent().css({
-				'display': 'none'
-			});
-			progressVal = progressVal - 1;
-			$('.progress-active').removeClass('progress-active').prev().removeClass('progress-activated').addClass('progress-active');
-		});
+        $(".prev_btn").click(function () {
+            let $current = $(this).closest('fieldset');
+            $current.addClass('d-none');
+            $current.prev('fieldset').removeClass('d-none');
+
+            updateProgress();
+        });
+
+        // On page load, update progress for visible fieldset
+        updateProgress();
+
+        // let progressVal = 0;
+        // let businessType = 0;
+
+		// $(".next_btn").click(function () {
+		// 	$(this).parent().parent().parent().next().fadeIn('slow');
+		// 	$(this).parent().parent().parent().css({
+		// 		'display': 'none'
+		// 	});
+		// 	progressVal = progressVal + 1;
+		// 	$('.progress-active').removeClass('progress-active').addClass('progress-activated').next().addClass('progress-active');
+		// });
+
+		// $(".prev_btn").click(function () {
+		// 	$(this).parent().parent().parent().prev().fadeIn('slow');
+		// 	$(this).parent().parent().parent().css({
+		// 		'display': 'none'
+		// 	});
+		// 	progressVal = progressVal - 1;
+		// 	$('.progress-active').removeClass('progress-active').prev().removeClass('progress-activated').addClass('progress-active');
+		// });
   	});
+
+    function updateProgress() {
+        let $current = $('fieldset:not(.d-none)');
+        let index = parseInt($current.data('index'));
+        let total = parseInt($current.data('total'));
+        let progressPercent = ((index + 1) / total) * 100;
+
+        $current.find('.progress-text').text(`Question ${index + 1} out of ${total}`);
+        $current.find('.progress-bar')
+            .css('width', progressPercent + '%')
+            .attr('aria-valuenow', progressPercent);
+    }
 
   	// CK Editor
 
@@ -656,18 +688,18 @@ Version      : 1.0
 	});
 
 	  // Summernote
-	//   if($('.summernote').length > 0) {
-	// 	$('.summernote').summernote({
-	// 	  height: 160,
-	// 	  minHeight: null,
-	// 	  maxHeight: null,
-	// 	  toolbar: [
-	// 	  ['fontsize', ['fontsize']],
-	// 	  ['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough']],
-	// 	  ['insert', ['picture']]
-	// 	  ],
-	// 	});
-	//   }
+	  if($('.summernote').length > 0) {
+		$('.summernote').summernote({
+		  height: 160,
+		  minHeight: null,
+		  maxHeight: null,
+		  toolbar: [
+		  ['fontsize', ['fontsize']],
+		  ['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough']],
+		  ['insert', ['picture']]
+		  ],
+		});
+	  }
 
 	     //Range Slider
 
@@ -1804,7 +1836,7 @@ Version      : 1.0
 				newInput.type = "text";
 				newInput.className = "form-control";
 				newInput.placeholder = "Enter new item";
-
+                newInput.name = "learning_outcome[]";
 				// Create trash icon link
 				const trashLink = document.createElement("a");
 				trashLink.href = "javascript:void(0);";
@@ -1864,12 +1896,35 @@ Version      : 1.0
 
 			  // Function to handle file upload (basic example)
 			  function handleFileUpload(file) {
-				if (file && file.size <= 2 * 1024 * 1024) {
-				  alert(`File "${file.name}" uploaded successfully.`);
-				} else {
-				  alert("File size exceeds 2 MB or invalid format.");
-				}
-			  }
+                    const uploadSection = document.getElementById("upload-img-section");
+                    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+                    const base64Input = document.getElementById("CourseMediaBase64");
+
+                    if (file && validTypes.includes(file.type) && file.size <= 2 * 1024 * 1024) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            // Set image as background
+                            uploadSection.style.backgroundImage = `url('${e.target.result}')`;
+                            uploadSection.style.backgroundSize = 'cover';
+                            uploadSection.style.backgroundPosition = 'center';
+                            uploadSection.style.backgroundRepeat = 'no-repeat';
+
+                            // Set the base64 result to hidden input
+                            if (base64Input) {
+                                base64Input.value = e.target.result;
+                            }
+
+                            // Hide upload content
+                            const uploadContent = uploadSection.querySelector('.upload-content');
+                            if (uploadContent) {
+                                uploadContent.style.display = 'none';
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert("Invalid image format or file size exceeds 2 MB.");
+                    }
+                }
 			}
 		  });
 
