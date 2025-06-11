@@ -484,18 +484,14 @@
                     <h2>What’s New in DreamsLMS</h2>
                     <p>Discover our featured courses, specially curated to help you gain in-demand skills</p>
                 </div>
-                <div class="feature-course-slider-2">
-                    <div>
+                <div class="feature-course-slider-2 row">
+                    <div class="col-md-3">
                         <div class="course-item">
                             <div class="course-img">
                                 <a href="course-details.html">
                                     <img src="{{ asset('img/course/course-36.jpg') }}" alt="img"
                                         class="img-fluid">
                                 </a>
-                                <div
-                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                    <span class="price-badge ms-auto">$500</span>
-                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <span class="badge badge-md badge-soft-info rounded-pill">UI/UX</span>
@@ -516,20 +512,16 @@
                                             class="fa-solid fa-star text-warning me-2"></i>5.0</span>
                                 </div>
                             </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Buy Course Now</a>
+                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
                         </div>
                     </div>
-                    <div>
+                    <div class="col-md-3">
                         <div class="course-item">
                             <div class="course-img">
                                 <a href="course-details.html">
                                     <img src="{{ asset('img/course/course-37.jpg') }}" alt="img"
                                         class="img-fluid">
                                 </a>
-                                <div
-                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                    <span class="price-badge ms-auto">$300</span>
-                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <span
@@ -552,20 +544,16 @@
                                             class="fa-solid fa-star text-warning me-2"></i>5.0</span>
                                 </div>
                             </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Buy Course Now</a>
+                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
                         </div>
                     </div>
-                    <div>
+                    <div class="col-md-3">
                         <div class="course-item">
                             <div class="course-img">
                                 <a href="course-details.html">
                                     <img src="{{ asset('img/course/course-38.jpg') }}" alt="img"
                                         class="img-fluid">
                                 </a>
-                                <div
-                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                    <span class="price-badge ms-auto">$350</span>
-                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <span
@@ -587,20 +575,16 @@
                                             class="fa-solid fa-star text-warning me-2"></i>5.0</span>
                                 </div>
                             </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Buy Course Now</a>
+                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
                         </div>
                     </div>
-                    <div>
+                    <div class="col-md-3">
                         <div class="course-item">
                             <div class="course-img">
                                 <a href="course-details.html">
                                     <img src="{{ asset('img/course/course-39.jpg') }}" alt="img"
                                         class="img-fluid">
                                 </a>
-                                <div
-                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                    <span class="price-badge ms-auto">$500</span>
-                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <span class="badge badge-soft-success badge-md rounded-pill shadow-none">Art &
@@ -623,20 +607,16 @@
                                             class="fa-solid fa-star text-warning me-2"></i>5.0</span>
                                 </div>
                             </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Buy Course Now</a>
+                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
                         </div>
                     </div>
-                    <div>
+                    <div class="col-md-3">
                         <div class="course-item">
                             <div class="course-img">
                                 <a href="course-details-2.html">
                                     <img src="{{ asset('img/course/course-37.jpg') }}" alt="img"
                                         class="img-fluid">
                                 </a>
-                                <div
-                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                    <span class="price-badge ms-auto">$300</span>
-                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <span
@@ -659,7 +639,7 @@
                                             class="fa-solid fa-star text-warning me-2"></i>5.0</span>
                                 </div>
                             </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Buy Course Now</a>
+                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
                         </div>
                     </div>
                 </div>
