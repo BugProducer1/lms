@@ -16,6 +16,15 @@ class StudentController extends Controller
         return view('student.dashboard', compact('courses'));
     }
 
+    public function courseLists()
+    {
+        $student = auth()->user(); // Must be a student
+
+        $courses = $student->enrolledCourses()->with('instructor')->get();
+
+        return view('student.enrolledcourses', compact('courses'));
+    }
+
     public function quizAttemps()
     {
         $student = auth()->user(); // Must be a student

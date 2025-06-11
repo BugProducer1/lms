@@ -60,6 +60,8 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
     Route::get('/dashboard', [StudentController::class, 'myCourses'])->name('student.dashboard');
     Route::get('/quizattemps', [StudentController::class, 'quizAttemps'])->name('student.quizattemps');
 
+    Route::get('/enrolledcourses', [StudentController::class, 'courseLists'])->name('student.enrolledcourses');
+
 
     Route::post('/quizquestion/{course}/submit', [QuizController::class, 'submitQuiz'])
         ->name('student.quiz.submit');
@@ -68,7 +70,7 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
     Route::get('/quizquestion/{course}', [StudentController::class, 'quizQuestion'])->name('student.quizquestion');
 
 //    Route::get('/dashboard', fn() => view('student.dashboard'));
-   Route::get('/enrolledcourses', fn() => view('student.enrolledcourses'))->name('student.enrolledcourses');
+
 
 //    Route::get('/quizattemps', fn() => view('student.quizattemps'))->name('student.quizattemps');
 
