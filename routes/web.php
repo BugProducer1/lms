@@ -79,7 +79,7 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
    Route::get('/coursewatch', fn() => view('student.coursewatch'))->name('student.coursewatch');
 
    Route::get('/studentprofile', function(){
-        return view('admin.profile');
+        return view('student.profile');
     })->name('student.profile');
 });
 
