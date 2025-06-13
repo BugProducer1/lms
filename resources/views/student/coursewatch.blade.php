@@ -14,14 +14,6 @@
                         <h3>
                             {{ $course->Title }}
                         </h3>
-                        <div class="mb-4">
-                            <p class="mb-1">46% Complete</p>
-                            <div class="progress progress-xs mb-2" role="progressbar" aria-valuenow="10"
-                                aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-success" style="width: 70%"></div>
-                            </div>
-                            <span class="fw-medium">Last activity on April 20, 2025</span>
-                        </div>
 
                         <div class="accordions-items-seperate" id="accordionSpacingExample">
                             @foreach ($course->topics as $index => $topic)

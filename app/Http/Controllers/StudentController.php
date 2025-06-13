@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\QuizResult;
 
 class StudentController extends Controller
 {
@@ -13,8 +14,14 @@ class StudentController extends Controller
 
         $courses = $student->enrolledCourses()->with('instructor')->get();
 
-        return view('student.dashboard', compact('courses'));
-    }
+        $quizResults = QuizResult::with('course')
+            ->where('user_id', $student->id)
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('student.dashboard', compact('courses', 'quizResults'));
+        }
 
     public function courseLists()
     {
@@ -30,12 +37,17 @@ class StudentController extends Controller
     {
         $student = auth()->user();
 
+        // Get enrolled courses with questions count
         $courses = $student->enrolledCourses()
                     ->with(['instructor'])
                     ->withCount('questions')
                     ->get();
 
-        return view('student.quizattemps', compact('courses'));
+        // Get quiz results for the student indexed by course_id
+        $quizResults = QuizResult::where('user_id', $student->id)
+                        ->pluck('id', 'course_id'); // just get course_id keys for existence check
+
+        return view('student.quizattemps', compact('courses', 'quizResults'));
     }
 
     public function quizQuestion($courseId)

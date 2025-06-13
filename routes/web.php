@@ -59,26 +59,14 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
     Route::get('/', [StudentController::class, 'myCourses'])->name('student.mycourses');
     Route::get('/dashboard', [StudentController::class, 'myCourses'])->name('student.dashboard');
     Route::get('/quizattemps', [StudentController::class, 'quizAttemps'])->name('student.quizattemps');
-
     Route::get('/enrolledcourses', [StudentController::class, 'courseLists'])->name('student.enrolledcourses');
-
-
     Route::post('/quizquestion/{course}/submit', [QuizController::class, 'submitQuiz'])
         ->name('student.quiz.submit');
-
-    // Route::get('/quizquestion', fn() => view('student.quizquestion'))->name('student.quizquestion');
     Route::get('/quizquestion/{course}', [StudentController::class, 'quizQuestion'])->name('student.quizquestion');
-
-//    Route::get('/dashboard', fn() => view('student.dashboard'));
-
-
-//    Route::get('/quizattemps', fn() => view('student.quizattemps'))->name('student.quizattemps');
-
-
    Route::get('/settings', fn() => view('student.settings'))->name('student.settings');
    Route::get('/changepassword', fn() => view('student.changepassword'))->name('student.changepassword');
    Route::get('/coursedetails', fn() => view('student.coursedetails'))->name('student.coursedetails');
-//    Route::get('/coursewatch', fn() => view('student.coursewatch'))->name('student.coursewatch');
+    Route::post('/student/lessons/{lesson}/progress', [LessonProgressController::class, 'store']);
 
    Route::get('/coursewatch/{course}', [CourseController::class, 'courseWatch'])
         ->name('student.coursewatch');
@@ -87,12 +75,6 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
         return view('student.profile');
     })->name('student.profile');
 });
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

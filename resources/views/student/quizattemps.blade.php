@@ -8,16 +8,29 @@
             <h5>My Quiz Attempts</h5>
         </div>
         @forelse ($courses as $course)
+            @php
+                $hasTakenQuiz = $quizResults->has($course->id);
+            @endphp
+
             <div class="d-flex align-items-center justify-content-between border p-3 mb-3 rounded-2">
                 <div>
-                    <h6 class="mb-1"><a
-                            href="{{ route('student.quizquestion', ['course' => $course->id]) }}">{{ $course->Title }}</a>
+                    <h6 class="mb-1">
+                        @if ($hasTakenQuiz)
+                            {{ $course->Title }} <span class="badge bg-success ms-1">Completed</span>
+                        @else
+                            <a href="{{ route('student.quizquestion', ['course' => $course->id]) }}">{{ $course->Title }}</a>
+                        @endif
                     </h6>
                     <p class="fs-14">Number of Questions : {{ $course->questions_count }}</p>
                 </div>
                 <div>
-                    <a href="{{ route('student.quizquestion', ['course' => $course->id]) }}" class="arrow-next"><i
-                            class="isax isax-arrow-right-1"></i></a>
+                    @if ($hasTakenQuiz)
+                        <i class="isax isax-check-circle text-success fs-24"></i>
+                    @else
+                        <a href="{{ route('student.quizquestion', ['course' => $course->id]) }}" class="arrow-next">
+                            <i class="isax isax-arrow-right-1"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
 

@@ -103,97 +103,34 @@
                 <div class="col-xl-12">
                     <div class="card mb-0">
                         <div class="card-body">
-                            <h5 class="mb-3 fs-18 border-bottom pb-3">Latest Quizes</h5>
-                            <div
-                                class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-                                <div>
-                                    <h6 class="mb-1">Sketch from A to Z (2024)</h6>
-                                    <div class="d-flex align-items-center">
-                                        <p>Correct Answer : 15/22</p>
+                            <h5 class="mb-3 fs-18 border-bottom pb-3">Latest Quizzes</h5>
+
+                            @forelse ($quizResults as $result)
+                                <div
+                                    class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
+                                    <div>
+                                        <h6 class="mb-1">{{ $result->course->Title ?? 'Untitled Course' }}</h6>
+                                        <div class="d-flex align-items-center">
+                                            <p>Correct Answer : {{ $result->score }}/100</p>
+                                        </div>
+                                    </div>
+                                    <div class="circle-progress flex-shrink-0" data-value="{{ $result->result }}">
+                                        <span class="progress-left">
+                                            <span
+                                                class="progress-bar {{ $result->passed ? 'border-success' : 'border-danger' }}"></span>
+                                        </span>
+                                        <span class="progress-right">
+                                            <span
+                                                class="progress-bar {{ $result->passed ? 'border-success' : 'border-danger' }}"></span>
+                                        </span>
+                                        <div class="progress-value">
+                                            {{ $result->result }}%
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="circle-progress flex-shrink-0" data-value='95'>
-                                    <span class="progress-left">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <div class="progress-value">95%</div>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-                                <div>
-                                    <h6 class="mb-1">Build Responsive Real World </h6>
-                                    <div class="d-flex align-items-center">
-                                        <p>Correct Answer : 18/22</p>
-                                    </div>
-                                </div>
-                                <div class="circle-progress flex-shrink-0" data-value='100'>
-                                    <span class="progress-left">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <div class="progress-value">100%</div>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-                                <div>
-                                    <h6 class="mb-1">UI/UX Design Degree</h6>
-                                    <div class="d-flex align-items-center">
-                                        <p>Correct Answer : 25/30</p>
-                                    </div>
-                                </div>
-                                <div class="circle-progress flex-shrink-0" data-value='80'>
-                                    <span class="progress-left">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <div class="progress-value">80%</div>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-                                <div>
-                                    <h6 class="mb-1">Build Responsive Real World </h6>
-                                    <div class="d-flex align-items-center">
-                                        <p>Correct Answer : 15/20</p>
-                                    </div>
-                                </div>
-                                <div class="circle-progress flex-shrink-0" data-value='85'>
-                                    <span class="progress-left">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar border-success"></span>
-                                    </span>
-                                    <div class="progress-value">85%</div>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2">
-                                <div>
-                                    <h6 class="mb-1">Become an app designer</h6>
-                                    <div class="d-flex align-items-center">
-                                        <p>Correct Answer : 12/20</p>
-                                    </div>
-                                </div>
-                                <div class="circle-progress flex-shrink-0" data-value='20'>
-                                    <span class="progress-left">
-                                        <span class="progress-bar border-danger"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar border-danger"></span>
-                                    </span>
-                                    <div class="progress-value">20%</div>
-                                </div>
-                            </div>
+                            @empty
+                                <p class="text-muted">No quiz results yet.</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
