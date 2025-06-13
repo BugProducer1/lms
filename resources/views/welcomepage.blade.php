@@ -148,8 +148,8 @@
                     <div class="col-xl-7 col-lg-7">
                         <div class="banner-content pe-xxl-5">
                             <span class="hero-title">The Leader in Online Learning</span>
-                            <h1 class="mb-4 text-white">Find the Best <span>Courses</span> from the Best
-                                <span>Mentors</span> Around the World
+                            <h1 class="mb-4 text-white">Find the Best <span>Lessons</span> from the Best
+                                <span>Mentors</span> in BCC
                             </h1>
                             <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4">Our specialized online courses
                                 are designed to bring the classroom experience to you, no matter where you are.</p>
@@ -172,189 +172,6 @@
                                 <button type="submit" class="btn btn-secondary ms-auto"><i
                                         class="isax isax-arrow-right-1"></i></button>
                             </form>
-                            <div
-                                class="d-flex align-items-center gap-4 justify-content-lg-between justify-content-center flex-wrap">
-                                <div class="counter-item">
-                                    <div class="counter-icon flex-shrink-0">
-                                        <img src="{{ asset('img/icons/icon-32.svg') }}" alt="img">
-                                    </div>
-                                    <div class="count-content">
-                                        <h5 class="text-purple"><span class="count-digit">10</span>K</h5>
-                                        <p>Online Courses</p>
-                                    </div>
-                                </div>
-                                <div class="counter-item">
-                                    <div class="counter-icon flex-shrink-0">
-                                        <img src="{{ asset('img/icons/icon-33.svg') }}" alt="img">
-                                    </div>
-                                    <div class="count-content">
-                                        <h5 class="text-skyblue"><span class="count-digit">6</span>K</h5>
-                                        <p>Certified Courses</p>
-                                    </div>
-                                </div>
-                                <div class="counter-item">
-                                    <div class="counter-icon flex-shrink-0">
-                                        <img src="{{ asset('img/icons/icon-34.svg') }}" alt="img">
-                                    </div>
-                                    <div class="count-content">
-                                        <h5 class="text-success"><span class="count-digit">2</span>K</h5>
-                                        <p>Experienced Tutors</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="banner-image">
-                            <div class="swiper swiper-slider-banner">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="course-item-two course-item mb-0">
-                                            <div class="course-img">
-                                                <img src="{{ asset('img/course/course-22.jpg') }}" alt="img"
-                                                    class="img-fluid">
-                                                <div
-                                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                                    <a href="javascript:void(0);" class="fav-icon">
-                                                        <i class="isax isax-heart"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="brand-icon ms-auto">
-                                                        <img src="{{ asset('img/icons/course-01.svg') }}"
-                                                            alt="img" class="img-fluid">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="course-content">
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <div class="d-flex align-items-center">
-                                                        <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                            <img src="{{ asset('img/user/user-50.jpg') }}"
-                                                                alt="img"
-                                                                class="img-fluid avatar avatar-sm rounded-circle">
-                                                        </a>
-                                                        <div class="ms-2">
-                                                            <a href="javascript:void(0);"
-                                                                class="link-default fs-14">David Benitz</a>
-                                                        </div>
-                                                    </div>
-                                                    <span
-                                                        class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium">
-                                                        Productivity
-                                                    </span>
-                                                </div>
-                                                <h6 class="mb-2"><a href="course-details.html">The Complete Business
-                                                        and Management Course</a></h6>
-                                                <p class="d-flex align-items-center mb-3"><i
-                                                        class="ti ti-star-filled text-warning me-2"></i>5.0 (210
-                                                    Reviews)</p>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="text-secondary fs-16 fw-semi-bold mb-0">$168</h6>
-                                                    <a href="cart.html"
-                                                        class="btn btn-dark btn-sm d-inline-flex align-items-center">Add
-                                                        to Cart<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="course-item course-item-two mb-0">
-                                            <div class="course-img">
-                                                <img src="{{ asset('img/course/course-25.jpg') }}" alt="img"
-                                                    class="img-fluid">
-                                                <div
-                                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                                    <a href="javascript:void(0);" class="fav-icon">
-                                                        <i class="isax isax-heart"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="brand-icon ms-auto">
-                                                        <img src="{{ asset('img/featured-courses/Clip-path-group.svg') }}"
-                                                            alt="img" class="img-fluid">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="content-course">
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <div class="d-flex align-items-center">
-                                                        <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                            <img src="{{ asset('img/user/user-20.jpg') }}"
-                                                                alt="img"
-                                                                class="img-fluid avatar avatar-sm rounded-circle">
-                                                        </a>
-                                                        <div class="ms-2">
-                                                            <a href="javascript:void(0);"
-                                                                class="link-default fs-14">Edith Dorsey</a>
-                                                        </div>
-                                                    </div>
-                                                    <span
-                                                        class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium">
-                                                        Lifestyles
-                                                    </span>
-                                                </div>
-                                                <h6 class="mb-2"><a href="course-details.html">Build Creative Arts &
-                                                        media Course Completed</a></h6>
-                                                <p class="d-flex align-items-center mb-3"><i
-                                                        class="ti ti-star-filled text-warning me-2"></i>4.9 (178
-                                                    Reviews)</p>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="text-secondary fs-16 fw-semi-bold mb-0">$190</h6>
-                                                    <a href="cart.html"
-                                                        class="btn btn-dark btn-sm d-inline-flex align-items-center">Add
-                                                        to Cart<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="course-item course-item-two mb-0">
-                                            <div class="course-img">
-                                                <img src="{{ asset('img/course/course-24.jpg') }}" alt="img"
-                                                    class="img-fluid">
-                                                <div
-                                                    class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-                                                    <a href="javascript:void(0);" class="fav-icon">
-                                                        <i class="isax isax-heart"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="brand-icon ms-auto">
-                                                        <img src="{{ asset('img/featured-courses/react.svg') }}"
-                                                            alt="img" class="img-fluid">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="content-course">
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <div class="d-flex align-items-center">
-                                                        <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                            <img src="{{ asset('img/user/user-23.jpg') }}"
-                                                                alt="img"
-                                                                class="img-fluid avatar avatar-sm rounded-circle">
-                                                        </a>
-                                                        <div class="ms-2">
-                                                            <a href="javascript:void(0);"
-                                                                class="link-default fs-14">Calvin Johnsen</a>
-                                                        </div>
-                                                    </div>
-                                                    <span
-                                                        class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium">
-                                                        Development
-                                                    </span>
-                                                </div>
-                                                <h6 class="mb-2"><a href="course-details.html">Learn & Create
-                                                        ReactJS Tech Fundamentals Apps</a></h6>
-                                                <p class="d-flex align-items-center mb-3"><i
-                                                        class="ti ti-star-filled text-warning me-2"></i>5.0 (154
-                                                    Reviews)</p>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="text-secondary fs-16 fw-semi-bold mb-0">$147</h6>
-                                                    <a href="cart.html"
-                                                        class="btn btn-dark btn-sm d-inline-flex align-items-center">Add
-                                                        to Cart<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -439,10 +256,10 @@
                     <img src="{{ asset('img/bg/bg-19.png') }}" alt="img" class="w-100 trust-bg">
                     <div class="row justify-content-between">
                         <div class="col-md-4">
-                            <h4>Trusted by the 15,000+ happy students and online users since 2000</h4>
+                            <h4>Trusted by BCC students</h4>
                             <div class="d-flex align-items-center flex-wrap mt-5 gap-2">
-                                <a href="login.html" class="btn btn-secondary">Enroll as Student</a>
-                                <a href="become-an-instructor.html" class="btn btn-dark">Apply as Tutor</a>
+                                <a href="/register" class="btn btn-secondary">Enroll as Student</a>
+                                <a href="/register" class="btn btn-dark">Apply as Instructor</a>
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -454,7 +271,7 @@
                                         significant.</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <h4 class="text-white mb-2">13k</h4>
+                                    <h4 class="text-white mb-2">BCC</h4>
                                     <h5 class="text-white mb-2">Satisfied Students Worldwide</h5>
                                     <p class="text-white mb-5">Satisfied students worldwide share a common thread of
                                         happiness.</p>
@@ -485,164 +302,48 @@
                     <p>Discover our featured courses, specially curated to help you gain in-demand skills</p>
                 </div>
                 <div class="feature-course-slider-2 row">
-                    <div class="col-md-3">
-                        <div class="course-item">
-                            <div class="course-img">
-                                <a href="course-details.html">
-                                    <img src="{{ asset('img/course/course-36.jpg') }}" alt="img"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="badge badge-md badge-soft-info rounded-pill">UI/UX</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                            </div>
-                            <div class="pb-3 border-bottom mb-3">
-                                <h5><a href="course-details.html">Information About UI/UX Design Degree</a></h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <div class="course-rating">
-                                    <span class="course-user"><a href="javascript:void(0);"><img
-                                                src="{{ asset('img/user/user-06.jpg') }}" alt="img"
-                                                class="img-fluid"></a></span>
-                                    <a href="javascript:void(0);">Brenda Slaton</a>
+                    @foreach ($courses as $course)
+                        <div class="col-md-3">
+                            <div class="course-item">
+                                <div class="course-img">
+                                    <a href="{{ route('users.coursedetails', ['id' => $course->id]) }}">
+                                        <img src="{{ $course->CourseMedia }}" alt="img" class="img-fluid">
+                                    </a>
                                 </div>
-                                <div class="d-flex">
-                                    <span class="d-flex align-items-center rating"><i
-                                            class="fa-solid fa-star text-warning me-2"></i>5.0</span>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span
+                                        class="badge badge-md badge-soft-info rounded-pill">{{ $course->Category }}</span>
+                                    <a href="javascript:void(0);" class="fav-icon"><i
+                                            class="isax isax-heart"></i></a>
                                 </div>
+                                <div class="pb-3 border-bottom mb-3">
+                                    <h5><a
+                                            href="{{ route('users.coursedetails', ['id' => $course->id]) }}">{{ $course->Title }}</a>
+                                    </h5>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div class="course-rating">
+                                        <span class="course-user">
+                                            <a href="javascript:void(0);">
+                                                <img src="{{ asset('img/user/default.jpg') }}" alt="img"
+                                                    class="img-fluid">
+                                            </a>
+                                        </span>
+                                        <a href="javascript:void(0);">{{ $course->user->name ?? 'Unknown' }}</a>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="d-flex align-items-center rating">
+                                            <i class="fa-solid fa-star text-warning me-2"></i>5.0
+                                        </span>
+                                    </div>
+                                </div>
+                                <a href="{{ route('users.coursedetails', ['id' => $course->id]) }}"
+                                    class="btn buy-course-btn">Enroll Course Now</a>
                             </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="course-item">
-                            <div class="course-img">
-                                <a href="course-details.html">
-                                    <img src="{{ asset('img/course/course-37.jpg') }}" alt="img"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span
-                                    class="badge badge-soft-danger badge-md rounded-pill shadow-none">Productivity</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                            </div>
-                            <div class="pb-3 border-bottom mb-3">
-                                <h5><a href="course-details.html">Learn & Create ReactJS Tech Fundamentals Apps</a>
-                                </h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <div class="course-rating">
-                                    <span class="course-user"><a href="javascript:void(0);"><img
-                                                src="{{ asset('img/user/user-07.jpg') }}" alt="img"
-                                                class="img-fluid"></a></span>
-                                    <a href="javascript:void(0);">David Benitez</a>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="d-flex align-items-center rating"><i
-                                            class="fa-solid fa-star text-warning me-2"></i>5.0</span>
-                                </div>
-                            </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="course-item">
-                            <div class="course-img">
-                                <a href="course-details.html">
-                                    <img src="{{ asset('img/course/course-38.jpg') }}" alt="img"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span
-                                    class="badge badge-soft-purple badge-md rounded-pill shadow-none">Management</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                            </div>
-                            <div class="pb-3 border-bottom mb-3">
-                                <h5><a href="course-details.html">The Complete Business and Management Course</a></h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <div class="course-rating">
-                                    <span class="course-user"><a href="javascript:void(0);"><img
-                                                src="{{ asset('img/user/user-08.jpg') }}" alt="img"
-                                                class="img-fluid"></a></span>
-                                    <a href="javascript:void(0);">Calvin Johnsen</a>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="d-flex align-items-center rating"><i
-                                            class="fa-solid fa-star text-warning me-2"></i>5.0</span>
-                                </div>
-                            </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="course-item">
-                            <div class="course-img">
-                                <a href="course-details.html">
-                                    <img src="{{ asset('img/course/course-39.jpg') }}" alt="img"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="badge badge-soft-success badge-md rounded-pill shadow-none">Art &
-                                    Media</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i
-                                        class="isax isax-heart5 text-danger"></i></a>
-                            </div>
-                            <div class="pb-3 border-bottom mb-3">
-                                <h5><a href="course-details.html">Build Creative Arts & media Course Completed</a></h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <div class="course-rating">
-                                    <span class="course-user"><a href="javascript:void(0);"><img
-                                                src="{{ asset('img/user/user-09.jpg') }}" alt="img"
-                                                class="img-fluid"></a></span>
-                                    <a href="javascript:void(0);">David Benitez</a>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="d-flex align-items-center rating"><i
-                                            class="fa-solid fa-star text-warning me-2"></i>5.0</span>
-                                </div>
-                            </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="course-item">
-                            <div class="course-img">
-                                <a href="course-details-2.html">
-                                    <img src="{{ asset('img/course/course-37.jpg') }}" alt="img"
-                                        class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span
-                                    class="badge badge-soft-danger badge-md rounded-pill shadow-none">Productivity</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                            </div>
-                            <div class="pb-3 border-bottom mb-3">
-                                <h5><a href="course-details-2.html">Learn & Create ReactJS Tech Fundamentals Apps</a>
-                                </h5>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <div class="course-rating">
-                                    <span class="course-user"><a href="javascript:void(0);"><img
-                                                src="{{ asset('img/user/user-07.jpg') }}" alt="img"
-                                                class="img-fluid"></a></span>
-                                    <a href="javascript:void(0);">David Benitez</a>
-                                </div>
-                                <div class="d-flex">
-                                    <span class="d-flex align-items-center rating"><i
-                                            class="fa-solid fa-star text-warning me-2"></i>5.0</span>
-                                </div>
-                            </div>
-                            <a href="course-details.html" class="btn buy-course-btn">Enroll Course Now</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+
                 <div class="d-flex align-items-center justify-content-center">
                     <a href="course-list.html" class="btn btn-primary btn-md">View All Courses</a>
                 </div>
@@ -694,8 +395,8 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-2">
-                            <a href="login.html" class="btn btn-secondary btn-md">Enroll as Student</a>
-                            <a href="become-an-instructor.html" class="btn btn-dark btn-md">Apply as Tutor</a>
+                            <a href="/register" class="btn btn-secondary btn-md">Enroll as Student</a>
+                            <a href="/register" class="btn btn-dark btn-md">Apply as Instructor</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -733,7 +434,7 @@
                                             <img src="{{ asset('img/user/user-06.jpg') }}" alt="img">
                                         </span>
                                     </div>
-                                    <p class="mb-0"><span class="text-secondary">35K+</span> Students Enrolled</p>
+                                    <p class="mb-0"><span class="text-secondary">100+</span> Students Enrolled</p>
                                 </div>
                             </div>
                         </div>

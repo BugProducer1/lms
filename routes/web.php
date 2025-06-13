@@ -6,7 +6,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-
+use App\Models\Course;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +19,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('welcomepage');
+    $courses = Course::with('user')->get();
+    return view('welcomepage', compact('courses'));
 });
 
 Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('users.coursedetails');
