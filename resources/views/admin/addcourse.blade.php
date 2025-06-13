@@ -488,7 +488,7 @@
         <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${topicId}">
                 <i class="isax isax-menu-15 me-2"></i>${title}
-                <input type="text" name="topics[${topId}][title]" value="${title}">
+                <input type="text" name="topics[${topId}][title]" value="${title}" style="display:none">
             </button>
         </h2>
         <div id="collapse-${topicId}" class="accordion-collapse collapse" data-bs-parent="#curriculumAccordion">
@@ -523,9 +523,9 @@
         <div class="d-flex align-items-center">
             <i class="isax isax-play-circle5 text-success fs-24 me-1"></i>
             <span class="fw-medium text-gray-5">${lessonTitle}</span>
-            <input type="text" name="topics[${lesId}][lessons][]" value="${lessonTitle}">
-            <input type="text" name="topics[${lesId}][lessonVideo][]" value="${lessonVideo}">
-            <input type="text" name="topics[${lesId}][lessonDescription][]" value="${lessonDescription}">
+            <input type="text" name="topics[${lesId}][lessons][]" value="${lessonTitle}" style="display:none">
+            <input type="text" name="topics[${lesId}][lessonVideo][]" value="${lessonVideo}" style="display:none">
+            <input type="text" name="topics[${lesId}][lessonDescription][]" value="${lessonDescription}" style="display:none">
         </div>
         <div class="d-flex align-items-center">
             <a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>

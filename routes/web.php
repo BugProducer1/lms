@@ -78,7 +78,10 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
    Route::get('/settings', fn() => view('student.settings'))->name('student.settings');
    Route::get('/changepassword', fn() => view('student.changepassword'))->name('student.changepassword');
    Route::get('/coursedetails', fn() => view('student.coursedetails'))->name('student.coursedetails');
-   Route::get('/coursewatch', fn() => view('student.coursewatch'))->name('student.coursewatch');
+//    Route::get('/coursewatch', fn() => view('student.coursewatch'))->name('student.coursewatch');
+
+   Route::get('/coursewatch/{course}', [CourseController::class, 'courseWatch'])
+        ->name('student.coursewatch');
 
    Route::get('/studentprofile', function(){
         return view('student.profile');

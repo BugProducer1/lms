@@ -174,4 +174,16 @@ class CourseController extends Controller
 
         return redirect()->back()->with('success', 'Successfully enrolled!');
     }
+
+    public function courseWatch(Course $course){
+        $user = auth()->user();
+
+        if (!$user->enrolledCourses->contains($course->id)) {
+            abort(403, 'You are not enrolled in this course.');
+        }
+
+        $course->load(['topics.lessons', 'learningOutcomes', 'faqs']);
+
+        return view('student.coursewatch', compact('course'));
+    }
 }

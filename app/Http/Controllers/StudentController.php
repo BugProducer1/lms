@@ -9,7 +9,7 @@ class StudentController extends Controller
 {
     public function myCourses()
     {
-        $student = auth()->user(); // Must be a student
+        $student = auth()->user();
 
         $courses = $student->enrolledCourses()->with('instructor')->get();
 
@@ -18,20 +18,21 @@ class StudentController extends Controller
 
     public function courseLists()
     {
-        $student = auth()->user(); // Must be a student
+        $student = auth()->user();
 
         $courses = $student->enrolledCourses()->with('instructor')->get();
 
         return view('student.enrolledcourses', compact('courses'));
     }
 
+
     public function quizAttemps()
     {
-        $student = auth()->user(); // Must be a student
+        $student = auth()->user();
 
         $courses = $student->enrolledCourses()
-                    ->with(['instructor'])      // To include instructor details
-                    ->withCount('questions')    // To count related questions
+                    ->with(['instructor'])
+                    ->withCount('questions')
                     ->get();
 
         return view('student.quizattemps', compact('courses'));
@@ -52,4 +53,6 @@ class StudentController extends Controller
 
         return view('student.quizquestion', compact('course'));
     }
+
+
 }

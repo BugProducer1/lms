@@ -13,4 +13,16 @@ class Lesson extends Model
     {
         return $this->belongsTo(Topic::class);
     }
+
+    public function progressForUser($userId)
+    {
+        return $this->progress()
+            ->where('user_id', $userId)
+            ->value('progress') ?? 0;
+    }
+
+    public function progress()
+    {
+        return $this->hasMany(LessonProgress::class);
+    }
 }

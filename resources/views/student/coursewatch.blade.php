@@ -12,7 +12,7 @@
                                     class="isax isax-arrow-left me-1"></i>Back to Course</a>
                         </div>
                         <h3>
-                            Learn Responsive Web Design Essentials
+                            {{ $course->Title }}
                         </h3>
                         <div class="mb-4">
                             <p class="mb-1">46% Complete</p>
@@ -24,157 +24,66 @@
                         </div>
 
                         <div class="accordions-items-seperate" id="accordionSpacingExample">
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="headingSpacingOne3">
-                                    <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse"
-                                        data-bs-target="#SpacingOne" aria-expanded="false" aria-controls="SpacingOne">
-                                        <div>
-                                            <span class="d-block mb-1">Section 1</span>
-                                            <h6 class="mb-0">Html Introduction</h6>
+                            @foreach ($course->topics as $index => $topic)
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="headingSpacing{{ $index }}">
+                                        <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse"
+                                            data-bs-target="#Spacing{{ $index }}" aria-expanded="false"
+                                            aria-controls="Spacing{{ $index }}">
+                                            <div>
+                                                <span class="d-block mb-1">Section {{ $index + 1 }}</span>
+                                                <h6 class="mb-0">{{ $topic->title }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Spacing{{ $index }}" class="accordion-collapse collapse"
+                                        aria-labelledby="headingSpacing{{ $index }}"
+                                        data-bs-parent="#accordionSpacingExample">
+                                        <div class="accordion-body">
+                                            @foreach ($topic->lessons as $lesson)
+                                                @php
+                                                    $progress = $lesson->progressForUser(auth()->id());
+                                                @endphp
+
+                                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="d-flex">
+                                                            <i
+                                                                class="isax {{ $progress >= 100 ? 'isax-check-circle text-success' : 'isax-play-circle5 text-muted' }} fs-24 me-1"></i>
+                                                        </span>
+                                                        <p class="accordian-content mb-0">
+                                                            <a href="#"
+                                                                class="open-video text-decoration-none text-dark"
+                                                                data-video="{{ $lesson->lessonVideo }}"
+                                                                data-lesson-id="{{ $lesson->id }}">
+                                                                {{ $lesson->title }}
+                                                                @if ($progress >= 100)
+                                                                    <span class="badge bg-success ms-1">Done</span>
+                                                                @elseif ($progress > 0)
+                                                                    <span
+                                                                        class="badge bg-warning ms-1">{{ $progress }}%</span>
+                                                                @endif
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
-                                <div id="SpacingOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingSpacingOne3" data-bs-parent="#accordionSpacingExample">
-                                    <div class="accordion-body">
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">Introduction</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">What is HTML</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">What is a Web page?</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="headingSpacingTwo">
-                                    <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse"
-                                        data-bs-target="#SpacingTwo" aria-expanded="false" aria-controls="SpacingTwo">
-                                        <div>
-                                            <span class="d-block mb-1">Section 2</span>
-                                            <h6 class="mb-0">Your First webpage</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="SpacingTwo" class="accordion-collapse collapse"
-                                    aria-labelledby="headingSpacingTwo" data-bs-parent="#accordionSpacingExample">
-                                    <div class="accordion-body">
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">Introduction</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">What is HTML</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">What is a Web page?</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="headingSpacingThree">
-                                    <div class="accordion-button collapsed" role="button" data-bs-toggle="collapse"
-                                        data-bs-target="#SpacingThree" aria-expanded="false"
-                                        aria-controls="SpacingThree">
-                                        <div>
-                                            <span class="d-block mb-1">Section 3</span>
-                                            <h6 class="mb-0">Your First webpage</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="SpacingThree" class="accordion-collapse collapse"
-                                    aria-labelledby="headingSpacingThree" data-bs-parent="#accordionSpacingExample">
-                                    <div class="accordion-body">
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">Introduction</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">What is HTML</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span class="d-flex"><i
-                                                        class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-                                                <p class="accordian-content mb-0">What is a Web page?</p>
-                                            </div>
-                                            <span>
-                                                2m 10s
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="course-watch-content">
-                        <div class="position-relative video-btn">
-                            <a href="https://www.youtube.com/embed/1trvO6dqQUI" id="openVideoBtn" target="_blank">
-                                <img class="img-fluid" src="{{ asset('img/course/course-27.jpg') }}" alt="img">
-                                <div class="play-icon">
-                                    <i class="fa-solid fa-play fs-28"></i>
-                                </div>
-                            </a>
+                        <div class="position-relative video-btn" id="videoPlayer">
+                            <iframe id="lessonVideoIframe" class="img-fluid" width="100%" height="420"
+                                src="" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                            <input type="hidden" id="currentLessonId" value="">
                         </div>
                         <div id="videoModal">
                             <div class="modal-content1">
@@ -200,174 +109,52 @@
                             <div class="tab-pane active show" id="overview" role="tabpanel">
                                 <div class="mb-4">
                                     <h6 class="fs-18 fw-semibold mb-1">About this course</h6>
-                                    <p>Learn Web Development Without Writing Much Code</p>
+                                    <p>{{ $course->ShortDescription }}</p>
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="fs-18 fw-semibold mb-2">Description</h6>
-                                    <p>Embark on a transformative journey into AI with Mike Wheeler, your guide in this
-                                        Udemy Best Seller course on ChatGPT and Prompt Engineering. As an experience
-                                        instructor who has taught well over 300,000 students, Mike unveils the secrets
-                                        of developing your own custom GPTs, ensuring your skills shine in the thriving
-                                        digital marketplace.</p>
-                                    <p class="mb-1">This course will get your familiar with Generative AI and the
-                                        effective use of ChatGPT and is perfect for the beginner. You will also learn
-                                        advanced prompting techniques to take your Prompt Engineering skills to the next
-                                        level!</p>
-                                    <a href="javascript:void(0);" class="readmore-btn">Readmore</a>
+                                    <p>{{ strip_tags($course->CourseDescription) }}</p>
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="fs-18 fw-semibold mb-2">What You’ll Learn</h6>
                                     <ul class="list-unstyled what-you-learn ms-4" style="list-style-type: disc;">
-                                        <li class="mb-2">Setting up the environment</li>
-                                        <li class="mb-2">Advanced HTML Practices</li>
-                                        <li class="mb-2">Build a portfolio website</li>
-                                        <li class="mb-2">Responsive Designs</li>
-                                        <li class="mb-2">Understand HTML Programming</li>
-                                        <li class="mb-2">Code HTML</li>
-                                        <li class="mb-0">Start building beautiful websites</li>
-                                    </ul>
-                                </div>
-                                <div class="mb-0">
-                                    <h6 class="fs-18 fw-semibold mb-2">Requirements</h6>
-                                    <ul class="list-unstyled what-you-learn ms-4" style="list-style-type: disc;">
-                                        <li class="mb-2">Any computer will work: Windows, macOS or Linux</li>
-                                        <li class="mb-2">Basic programming HTML and CSS.</li>
-                                        <li class="mb-0">Basic/Minimal understanding of JavaScript</li>
+                                        @foreach ($course->learningOutcomes as $outcome_row)
+                                            <li class="mb-2">{{ $outcome_row->title }}</li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                             <div class="tab-pane" id="notes" role="tabpanel">
                                 <div class="mb-0">
                                     <h6 class="fs-18 fw-semibold mb-1">Notes</h6>
-                                    <p>Embark on a transformative journey into AI with Mike Wheeler, your guide in this
-                                        Udemy Best Seller course on ChatGPT and Prompt Engineering. As an experience
-                                        instructor who has taught well over 300,000 students, Mike unveils the secrets
-                                        of developing your own custom GPTs, ensuring your skills shine in the thriving
-                                        digital marketplace.</p>
-                                    <p class="mb-0">This course will get your familiar with Generative AI and the
-                                        effective use of ChatGPT and is perfect for the beginner. You will also learn
-                                        advanced prompting techniques to take your Prompt Engineering skills to the next
-                                        level!</p>
+                                    <p>{{ strip_tags($course->ShortDescription) }}</p>
                                 </div>
                             </div>
                             <div class="tab-pane" id="faq" role="tabpanel">
                                 <div class="faq-accordion">
                                     <div class="accordions-items-seperate" id="accordionSpacingExample2">
-                                        <div class="accordion-item">
-                                            <div class="accordion-header" id="headingSpacingOne2">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#accordionOne"
-                                                    aria-expanded="false" aria-controls="accordionOne">
-                                                    How do I enroll in a course?
-                                                </button>
-                                            </div>
-                                            <div id="accordionOne" class="accordion-collapse collapse"
-                                                aria-labelledby="headingSpacingOne2"
-                                                data-bs-parent="#accordionSpacingExample2">
-                                                <div class="accordion-body">
-                                                    <p class="mb-0">Many websites offer a Certificate of Completion
-                                                        for paid courses. Free courses may or may not include a
-                                                        certificate, depending on the platform’s policies.</p>
+                                        @foreach ($course->faqs as $index => $faq)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header"
+                                                    id="headingSpacingTwo{{ $index }}">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#accordion{{ $index }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="accordion{{ $index }}">
+                                                        {{ $faq->question }}
+                                                    </button>
+                                                </h2>
+                                                <div id="accordion{{ $index }}"
+                                                    class="accordion-collapse collapse"
+                                                    aria-labelledby="headingSpacingTwo{{ $index }}"
+                                                    data-bs-parent="#accordionSpacingExample2">
+                                                    <div class="accordion-body">
+                                                        <p class="mb-0">{{ $faq->answer }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingSpacingTwo2">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#accordionTwo"
-                                                    aria-expanded="false" aria-controls="accordionTwo">
-                                                    How long do I have access to a course?
-                                                </button>
-                                            </h2>
-                                            <div id="accordionTwo" class="accordion-collapse collapse"
-                                                aria-labelledby="headingSpacingTwo2"
-                                                data-bs-parent="#accordionSpacingExample2">
-                                                <div class="accordion-body">
-                                                    <p class="mb-0">Many websites offer a Certificate of Completion
-                                                        for paid courses. Free courses may or may not include a
-                                                        certificate, depending on the platform’s policies.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingSpacingTwo3">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#accordionThree"
-                                                    aria-expanded="false" aria-controls="accordionThree">
-                                                    What payment methods are accepted?
-                                                </button>
-                                            </h2>
-                                            <div id="accordionThree" class="accordion-collapse collapse"
-                                                aria-labelledby="headingSpacingTwo3"
-                                                data-bs-parent="#accordionSpacingExample2">
-                                                <div class="accordion-body">
-                                                    <p class="mb-0">Many websites offer a Certificate of Completion
-                                                        for paid courses. Free courses may or may not include a
-                                                        certificate, depending on the platform’s policies.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingSpacingTwo4">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#accordionFour"
-                                                    aria-expanded="false" aria-controls="accordionFour">
-                                                    Will I receive a certificate after completing a course?
-                                                </button>
-                                            </h2>
-                                            <div id="accordionFour" class="accordion-collapse collapse show"
-                                                aria-labelledby="headingSpacingTwo4"
-                                                data-bs-parent="#accordionSpacingExample2">
-                                                <div class="accordion-body">
-                                                    <p class="mb-0">
-                                                        Many websites offer a Certificate of Completion for paid
-                                                        courses. Free courses may or may not include a certificate,
-                                                        depending on the platform’s policies.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingSpacingTwo5">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#accordionFive"
-                                                    aria-expanded="false" aria-controls="accordionFive">
-                                                    What is the purpose of this DreamLMS ?
-                                                </button>
-                                            </h2>
-                                            <div id="accordionFive" class="accordion-collapse collapse"
-                                                aria-labelledby="headingSpacingTwo5"
-                                                data-bs-parent="#accordionSpacingExample2">
-                                                <div class="accordion-body">
-                                                    <p class="mb-0">
-                                                        Many websites offer a Certificate of Completion for paid
-                                                        courses. Free courses may or may not include a certificate,
-                                                        depending on the platform’s policies.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingSpacingTwo6">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#accordionSix"
-                                                    aria-expanded="false" aria-controls="accordionSix">
-                                                    What can I do with my certificate?
-                                                </button>
-                                            </h2>
-                                            <div id="accordionSix" class="accordion-collapse collapse"
-                                                aria-labelledby="headingSpacingTwo6"
-                                                data-bs-parent="#accordionSpacingExample2">
-                                                <div class="accordion-body">
-                                                    <p class="mb-0">
-                                                        Many websites offer a Certificate of Completion for paid
-                                                        courses. Free courses may or may not include a certificate,
-                                                        depending on the platform’s policies.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -380,3 +167,55 @@
 </div>
 
 @include('layouts.footer')
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    let player;
+    let updateInterval;
+    let userId = {{ auth()->user()->id }};
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('lessonVideoIframe', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            clearInterval(updateInterval);
+            updateInterval = setInterval(() => {
+                const currentTime = player.getCurrentTime();
+                const duration = player.getDuration();
+                const progress = Math.floor((currentTime / duration) * 100);
+                const lessonId = document.getElementById('currentLessonId').value;
+
+                // Send to backend
+                fetch(`/api/lesson-progress`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        lesson_id: lessonId,
+                        progress: progress
+                    })
+                });
+            }, 5000);
+        } else {
+            clearInterval(updateInterval);
+        }
+    }
+
+    document.querySelectorAll('.open-video').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const videoUrl = this.dataset.video.replace("watch?v=", "embed/");
+            const iframe = document.getElementById('lessonVideoIframe');
+            iframe.src = videoUrl + "?enablejsapi=1";
+            document.getElementById('currentLessonId').value = this.dataset.lessonId;
+        });
+    });
+</script>
