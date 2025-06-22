@@ -28,11 +28,12 @@ Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('user
 Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(function(){
 
     Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
-
+    Route::post('/update-profile', [CourseController::class, 'updateProfile'])->name('admin.updateProfile');
 
     Route::get('/', [CourseController::class, 'dashboard'])->name('instructor.home');
     Route::get('/dashboard', [CourseController::class, 'dashboard'])->name('instructor.dasboard');
     Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('admin.coursedetails');
+    Route::get('/settings', [CourseController::class, 'settings'])->name('admin.settings');
     Route::get('/instructorprofile', function(){
         return view('admin.profile');
     })->name('instructor.profile');
@@ -55,7 +56,7 @@ Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(func
 });
 
 Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function(){
-
+    Route::post('/update-profile', [StudentController::class, 'updateProfile'])->name('student.updateProfile');
     Route::post('/courses/{course}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
     Route::get('/', [StudentController::class, 'myCourses'])->name('student.mycourses');
     Route::get('/dashboard', [StudentController::class, 'myCourses'])->name('student.dashboard');
@@ -64,7 +65,9 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
     Route::post('/quizquestion/{course}/submit', [QuizController::class, 'submitQuiz'])
         ->name('student.quiz.submit');
     Route::get('/quizquestion/{course}', [StudentController::class, 'quizQuestion'])->name('student.quizquestion');
-   Route::get('/settings', fn() => view('student.settings'))->name('student.settings');
+
+//    Route::get('/settings', fn() => view('student.settings'))->name('student.settings');
+   Route::get('/settings', [StudentController::class, 'settings'])->name('student.settings');
    Route::get('/changepassword', fn() => view('student.changepassword'))->name('student.changepassword');
    Route::get('/coursedetails', fn() => view('student.coursedetails'))->name('student.coursedetails');
     Route::post('/student/lessons/{lesson}/progress', [LessonProgressController::class, 'store']);
@@ -72,9 +75,10 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
    Route::get('/coursewatch/{course}', [CourseController::class, 'courseWatch'])
         ->name('student.coursewatch');
 
-   Route::get('/studentprofile', function(){
-        return view('student.profile');
-    })->name('student.profile');
+    Route::get('/studentprofile', [StudentController::class, 'studentProfile'])->name('student.profile');
+//    Route::get('/studentprofile', function(){
+//         return view('student.profile');
+//     })->name('student.profile');
 });
 
 Route::middleware('auth')->group(function () {

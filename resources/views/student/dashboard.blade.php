@@ -17,7 +17,7 @@
                                     src="{{ asset('img/icon/graduation.svg') }}" alt=""></span>
                             <div>
                                 <span class="d-block">Enrolled Courses</span>
-                                <h4 class="fs-24 mt-1">12</h4>
+                                <h4 class="fs-24 mt-1">{{ $courses->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                     src="{{ asset('img/icon/book.svg') }}" alt=""></span>
                             <div>
                                 <span class="d-block">Active Courses</span>
-                                <h4 class="fs-24 mt-1">03</h4>
+                                <h4 class="fs-24 mt-1">{{ $activeCoursesCount }}</h4>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                     src="{{ asset('img/icon/bookmark.svg') }}" alt=""></span>
                             <div>
                                 <span class="d-block">Completed Courses</span>
-                                <h4 class="fs-24 mt-1">10</h4>
+                                <h4 class="fs-24 mt-1">{{ $completedCoursesCount }}</h4>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                             <div class="d-flex justify-content-between mb-2">
                                 <div class="d-flex align-items-center">
                                     <a href="#" class="avatar avatar-sm">
-                                        <img src="{{ $course->instructor->profile_photo ?? asset('img/user/default.jpg') }}"
+                                        <img src="{{ $course->instructor->userPhoto ?? asset('img/user/default.jpg') }}"
                                             alt="Instructor" class="img-fluid rounded-circle">
                                     </a>
                                     <div class="ms-2">
@@ -85,10 +85,14 @@
                                 </a>
                             </h6>
                             <div class="d-flex align-items-center justify-content-between">
-                                <a href="{{ route('student.coursewatch', $course->id) }}"
-                                    class="btn btn-dark btn-sm d-inline-flex align-items-center">
-                                    Take Course<i class="isax isax-arrow-right-3 ms-1"></i>
-                                </a>
+                                @if ($completedCourseIds->contains($course->id))
+                                    <span class="badge bg-success">Completed</span>
+                                @else
+                                    <a href="{{ route('student.coursewatch', $course->id) }}"
+                                        class="btn btn-dark btn-sm d-inline-flex align-items-center">
+                                        Take Course<i class="isax isax-arrow-right-3 ms-1"></i>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -111,7 +115,7 @@
                                     <div>
                                         <h6 class="mb-1">{{ $result->course->Title ?? 'Untitled Course' }}</h6>
                                         <div class="d-flex align-items-center">
-                                            <p>Correct Answer : {{ $result->score }}/100</p>
+                                            <p>Correct Answer : {{ $result->score }}%</p>
                                         </div>
                                     </div>
                                     <div class="circle-progress flex-shrink-0" data-value="{{ $result->result }}">

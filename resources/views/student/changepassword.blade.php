@@ -11,8 +11,6 @@
         <ul class="settings-nav d-flex align-items-center flex-wrap border bg-light-900 rounded">
             <li><a href="{{ route('student.settings') }}">Edit Profile</a></li>
             <li><a href="{{ route('student.changepassword') }}" class="active">Security</a></li>
-            <li><a href="student-social-profile.html">Social Profiles</a></li>
-            <li><a href="student-linked-accounts.html">Linked Accounts</a></li>
         </ul>
         <div class="card mb-0">
             <div class="card-body">

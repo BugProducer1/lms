@@ -1,6 +1,6 @@
 <!-- /Header -->
 
-<!-- Breadcrumb -->
+{{-- <!-- Breadcrumb -->
 <div class="breadcrumb-bar text-center">
     <div class="container">
         <div class="row">
@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<!-- /Breadcrumb -->
+<!-- /Breadcrumb --> --}}
 
 <div class="content">
     <div class="container">
@@ -27,16 +27,21 @@
             <div class="row align-items-center row-gap-3">
                 <div class="col-md-6">
                     <div class="d-flex align-items-center">
+                        @php
+                            $user = Auth::user();
+                        @endphp
                         <span
                             class="avatar flex-shrink-0 avatar-xxl avatar-rounded me-3 border border-white border-3 position-relative">
-                            <img src="assets/img/user/user-01.jpg" alt="img">
+                            <img src="{{ $user->userPhoto ? $user->userPhoto : asset('img/user/user-02.jpg') }}"
+                                alt="Profile" class="img-fluid">
                             <span class="verify-tick"><i class="isax isax-verify5"></i></span>
                         </span>
                         <div>
-                            <h5 class="mb-1 text-white d-inline-flex align-items-center">Eugene Andre<a
-                                    href="instructor-profile.html" class="link-light fs-16 ms-2"><i
+
+                            <h5 class="mb-1 text-white d-inline-flex align-items-center">{{ $user->name }}
+                                {{ $user->last_name }}<a href="instructor-profile.html" class="link-light fs-16 ms-2"><i
                                         class="isax isax-edit-2"></i></a></h5>
-                            <p class="text-light">Instructor</p>
+                            <p class="text-light">{{ $user->role }}</p>
                         </div>
                     </div>
                 </div>
@@ -91,7 +96,8 @@
                         <h6 class="mb-3">Account Settings</h6>
                         <ul>
                             <li>
-                                <a href="instructor-settings.html" class="d-inline-flex align-items-center"><i
+                                <a href="{{ route('admin.settings') }}"
+                                    class="d-inline-flex align-items-center {{ Request::is('admin/settings') ? 'active' : '' }}"><i
                                         class="isax isax-setting-25 me-2"></i>Settings</a>
                             </li>
                             <li>

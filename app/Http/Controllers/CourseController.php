@@ -139,6 +139,7 @@ class CourseController extends Controller
 
     public function dashboard()
     {
+        $user = auth()->user();
         // You can also filter by Auth::id() if needed
         $courses = Course::with([
             'faqs',
@@ -147,7 +148,7 @@ class CourseController extends Controller
             'topics.lessons'
         ])->where('user_id', auth()->id())->get();
 
-        return view('admin.dashboard', compact('courses'));
+        return view('admin.dashboard', compact('courses','user'));
     }
 
     public function show($id)
@@ -185,5 +186,52 @@ class CourseController extends Controller
         $course->load(['topics.lessons', 'learningOutcomes', 'faqs']);
 
         return view('student.coursewatch', compact('course'));
+    }
+
+    public function settings(){
+        $user = auth()->user();
+
+        return view('admin.settings', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone_number' => 'nullable|string|max:20',
+            'gender' => 'in:M,F',
+            'dob' => 'nullable|date',
+            'userPhoto' => 'nullable|string',
+            'userID' => 'nullable|string',
+        ]);
+
+        $user->name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
+        $user->gender = $request->gender;
+        $user->dob = $request->dob;
+        $user->userID = $request->userID;
+
+        if ($request->filled('profile_image_base64')) {
+            $base64Image = $request->profile_image_base64;
+
+
+            if (preg_match('/^data:image\/(png|jpeg|jpg);base64,/', $base64Image)) {
+                $user->userPhoto = $base64Image;
+            } else {
+                return back()->withErrors(['profile_image_base64' => 'Invalid image format.']);
+            }
+        }
+
+        $user->completed_profile = '1';
+
+        $request->user()->save();
+
+        return redirect()->route('admin.settings')->with('success', 'Profile updated successfully!');
     }
 }

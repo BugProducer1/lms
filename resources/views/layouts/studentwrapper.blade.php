@@ -1,6 +1,6 @@
 <!-- /Header -->
 
-<!-- Breadcrumb -->
+{{-- <!-- Breadcrumb -->
 <div class="breadcrumb-bar text-center">
     <div class="container">
         <div class="row">
@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<!-- /Breadcrumb -->
+<!-- /Breadcrumb --> --}}
 
 <div class="content">
     <div class="container">
@@ -29,7 +29,8 @@
                     <div class="d-flex align-items-center">
                         <span
                             class="avatar flex-shrink-0 avatar-xxl avatar-rounded me-3 border border-white border-3 position-relative">
-                            <img src="{{ asset('img/user/user-01.jpg') }}" alt="img">
+                            <img src="{{ $user->userPhoto ? $user->userPhoto : asset('img/user/user-02.jpg') }}"
+                                alt="Profile" class="img-fluid">
                             <span class="verify-tick"><i class="isax isax-verify5"></i></span>
                         </span>
                         <div>
@@ -53,37 +54,41 @@
                 <div class="settings-sidebar mb-lg-0">
                     <div>
                         <h6 class="mb-3">Main Menu</h6>
-                        <ul class="mb-3 pb-1">
-                            <li>
-                                <a href="/student/dashboard"
-                                    class="d-inline-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}"><i
-                                        class="isax isax-grid-35 me-2"></i>Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('student.profile') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('instructorprofile') ? 'active' : '' }}"><i
-                                        class="fa-solid fa-user me-2 "></i>My
-                                    Profile</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('student.enrolledcourses') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('enrolledcourses') ? 'active' : '' }}"><i
-                                        class="isax isax-teacher5 me-2"></i>Enrolled Courses</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('student.quizattemps') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('student/quizattemps') ? 'active' : '' }}"><i
-                                        class="isax isax-award5 me-2"></i>My Quiz Attemps</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor.quizresult') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('quizresult') ? 'active' : '' }}"><i
-                                        class="isax isax-medal-star5 me-2"></i>Quiz Results</a>
-                            </li>
-                            <li>
-                                <a href="instructor-message.html" class="d-inline-flex align-items-center"><i
-                                        class="isax isax-messages-35 me-2"></i>Messages</a>
-                            </li>
+                        @if ($user && $user->completed_profile == 1)
+                            <ul class="mb-3 pb-1">
+                                <li>
+                                    <a href="/student/dashboard"
+                                        class="d-inline-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}"><i
+                                            class="isax isax-grid-35 me-2"></i>Dashboard</a>
+                                </li>
+                                {{-- <li>
+                                    <a href="{{ route('student.profile') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('instructorprofile') ? 'active' : '' }}"><i
+                                            class="fa-solid fa-user me-2 "></i>My
+                                        Profile</a>
+                                </li> --}}
+                                <li>
+                                    <a href="{{ route('student.enrolledcourses') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('enrolledcourses') ? 'active' : '' }}"><i
+                                            class="isax isax-teacher5 me-2"></i>Enrolled Courses</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('student.quizattemps') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('student/quizattemps') ? 'active' : '' }}"><i
+                                            class="isax isax-award5 me-2"></i>My Quiz Attemps</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('instructor.quizresult') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('quizresult') ? 'active' : '' }}"><i
+                                            class="isax isax-medal-star5 me-2"></i>Quiz Results</a>
+                                </li>
+                                <li>
+                                    <a href="instructor-message.html" class="d-inline-flex align-items-center"><i
+                                            class="isax isax-messages-35 me-2"></i>Messages</a>
+                                </li>
+                            @else
+                                <p>Please complete your profile</p>
+                        @endif
                         </ul>
                         <hr>
                         <h6 class="mb-3">Account Settings</h6>

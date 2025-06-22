@@ -1,6 +1,4 @@
-@extends('layouts.studentapp')
-
-@section('title', 'Settings')
+@extends('layouts.app')
 
 @section('content')
     <div class="col-lg-9">
@@ -16,7 +14,7 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
-                <form action="{{ route('student.updateProfile') }}" method="POST">
+                <form action="{{ route('admin.updateProfile') }}" method="POST">
                     @csrf
                     <input type="hidden" name="profile_image_base64" id="profile_image_base64">
 
