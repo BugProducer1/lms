@@ -34,17 +34,15 @@ Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(func
     Route::get('/dashboard', [CourseController::class, 'dashboard'])->name('instructor.dasboard');
     Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('admin.coursedetails');
     Route::get('/settings', [CourseController::class, 'settings'])->name('admin.settings');
+    Route::get('/courselist', [CourseController::class, 'courseList'])->name('instructor.courselist');
+    Route::get('instructorquiz', [CourseController::class, 'instructorquiz'])->name('instructor.quiz');
     Route::get('/instructorprofile', function(){
         return view('admin.profile');
     })->name('instructor.profile');
 
-    Route::get('/courselist', function(){
-        return view('admin.courselist');
-    })->name('instructor.courselist');
-
-    Route::get('/instructorquiz', function(){
-        return view('admin.quiz');
-    })->name('instructor.quiz');
+    Route::get('changepassword', function(){
+        return view('admin.changepassword');
+    })->name('instructor.changepassword');
 
     Route::get('quizresult', function(){
         return view('admin.quizresult');

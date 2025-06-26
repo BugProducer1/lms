@@ -1,7 +1,7 @@
 </div>
 </div>
 </div>
-
+</div>
 <!-- Footer -->
 <footer class="footer">
     {{-- <div class="footer-bg">
@@ -108,7 +108,7 @@
 </footer>
 <!-- /Footer -->
 
-</div>
+
 <!-- /Main Wrapper -->
 
 <!-- jQuery -->

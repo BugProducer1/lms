@@ -7,7 +7,7 @@
         </div>
         <ul class="settings-nav d-flex align-items-center flex-wrap border bg-light-900 rounded">
             <li><a href="{{ route('student.settings') }}" class="active">Edit Profile</a></li>
-            <li><a href="{{ route('student.changepassword') }}">Security</a></li>
+            <li><a href="{{ route('instructor.changepassword') }}">Security</a></li>
         </ul>
         <div class="card">
             <div class="card-body">
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Student ID <span class="text-danger">*</span></label>
+                            <label class="form-label">Instructor ID <span class="text-danger">*</span></label>
                             <input type="text" name="userID" value="{{ $user->userID }}" class="form-control">
                         </div>
                         <div class="col-md-12">

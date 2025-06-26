@@ -9,7 +9,7 @@
                 <div class="card bg-success">
                     <div class="card-body">
                         <h6 class="fw-medium mb-1 text-white">Active Courses</h6>
-                        <h4 class="fw-bold text-white">45</h4>
+                        <h4 class="fw-bold text-white">{{ $activeCount }}</h4>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="card bg-secondary">
                     <div class="card-body">
                         <h6 class="fw-medium mb-1 text-white">Pending Courses</h6>
-                        <h4 class="fw-bold text-white">21</h4>
+                        <h4 class="fw-bold text-white">{{ $pendingCount }}</h4>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card bg-info">
                     <div class="card-body">
                         <h6 class="fw-medium mb-1 text-white">Draft Courses</h6>
-                        <h4 class="fw-bold text-white">15</h4>
+                        <h4 class="fw-bold text-white">{{ $draftCount }}</h4>
                     </div>
                 </div>
             </div>
@@ -81,168 +81,85 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
 
-                                <a href="course-details.html" class="avatar avatar-lg me-2 flex-shrink-0"><img
-                                        class="img-fluid object-fit-cover" src="assets/img/course/course-01.jpg"
-                                        alt=""></a>
+                    @foreach ($courses as $course)
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ route('admin.coursedetails', $course->id) }}" class="avatar avatar-lg me-2">
+                                        <img class="img-fluid object-fit-cover" src="{{ $course->CourseMedia }}"
+                                            alt="">
 
-                                <div>
-                                    <h6 class="fw-medium mb-2"><a href="course-details.html">Information About UI/UX Design
-                                            Degree</a></h6>
-                                    <div class="d-flex align-items-center">
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11
-                                            Lessons</span>
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2
-                                            Quizzes</span>
-                                        <span class="d-inline-flex fs-12 align-items-center"><i
-                                                class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
+                                    </a>
+                                    <div>
+                                        <h6 class="fw-medium mb-2">
+                                            <a
+                                                href="{{ route('admin.coursedetails', $course->id) }}">{{ $course->title }}</a>
+                                        </h6>
+                                        <div class="d-flex align-items-center">
+                                            @php
+                                                $lessonCount = $course->topics->sum(function ($topic) {
+                                                    return $topic->lessons->count();
+                                                });
+                                            @endphp
+                                            <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end">
+                                                <i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>
+                                                {{ $lessonCount }} Lessons
+                                            </span>
+
+                                            <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end">
+                                                <i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>
+                                                {{ $course->questions->count() }} Quizzes
+                                            </span>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>600</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-                                <span>4.5 (300)</span>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i
-                                    class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i
-                                        class="isax isax-edit-2"></i></a>
-                                <a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal"
-                                    data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-lg me-2"><img
-                                        class="img-fluid object-fit-cover" src="assets/img/course/course-02.jpg"
-                                        alt=""></a>
-                                <div>
-                                    <h6 class="fw-medium mb-2"><a href="course-details.html">Wordpress for Beginners -
-                                            Master Wordpress Quickly</a></h6>
-                                    <div class="d-flex align-items-center">
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11
-                                            Lessons</span>
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2
-                                            Quizzes</span>
-                                        <span class="d-inline-flex fs-12 align-items-center"><i
-                                                class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-                                    </div>
+                            </td>
+
+                            {{-- Enrolled students --}}
+                            <td>{{ $course->enrollment_count }}</td>
+
+                            {{-- Static rating for now --}}
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
+                                    <span>4.2 (430)</span>
                                 </div>
-                            </div>
-                        </td>
-                        <td>500</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-                                <span>4.2 (430)</span>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-sm bg-skyblue d-inline-flex align-items-center me-1"><i
-                                    class="fa-solid fa-circle fs-5 me-1"></i>Pending</span></td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i
-                                        class="isax isax-edit-2"></i></a>
-                                <a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal"
-                                    data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-lg me-2"><img
-                                        class="img-fluid object-fit-cover" src="assets/img/course/course-03.jpg"
-                                        alt=""></a>
-                                <div>
-                                    <h6 class="fw-medium mb-2"><a href="course-details.html">Sketch from A to Z (2024):
-                                            Become an app designer</a></h6>
-                                    <div class="d-flex align-items-center">
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11
-                                            Lessons</span>
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2
-                                            Quizzes</span>
-                                        <span class="d-inline-flex fs-12 align-items-center"><i
-                                                class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-                                    </div>
+                            </td>
+
+                            {{-- Status badge --}}
+                            <td>
+                                @php
+                                    $status = $course->course_status;
+                                    $badgeText = $status === '0' ? 'Pending' : ($status === '1' ? 'Draft' : 'Active');
+                                    $badgeClass =
+                                        $status === '0'
+                                            ? 'bg-skyblue'
+                                            : ($status === '1'
+                                                ? 'bg-secondary'
+                                                : 'bg-success');
+                                @endphp
+                                <span class="badge badge-sm {{ $badgeClass }} d-inline-flex align-items-center me-1">
+                                    <i class="fa-solid fa-circle fs-5 me-1"></i>{{ $badgeText }}
+                                </span>
+                            </td>
+
+                            {{-- Actions --}}
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ route('admin.coursedetails', $course->id) }}"
+                                        class="d-inline-flex fs-14 me-1 action-icon">
+                                        <i class="isax isax-edit-2"></i>
+                                    </a>
+                                    <a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal"
+                                        data-bs-target="#delete_modal_{{ $course->id }}">
+                                        <i class="isax isax-trash"></i>
+                                    </a>
                                 </div>
-                            </div>
-                        </td>
-                        <td>300</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-                                <span>4.7 (140)</span>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-sm bg-info d-inline-flex align-items-center me-1"><i
-                                    class="fa-solid fa-circle fs-5 me-1"></i>Draft</span></td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i
-                                        class="isax isax-edit-2"></i></a>
-                                <a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal"
-                                    data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="course-details.html" class="avatar avatar-lg me-2"><img
-                                        class="img-fluid object-fit-cover" src="assets/img/course/course-04.jpg"
-                                        alt=""></a>
-                                <div>
-                                    <h6 class="fw-medium mb-2"><a href="course-details.html">Build Responsive Real World
-                                            Websites with Crash Course</a></h6>
-                                    <div class="d-flex align-items-center">
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11
-                                            Lessons</span>
-                                        <span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i
-                                                class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2
-                                            Quizzes</span>
-                                        <span class="d-inline-flex fs-12 align-items-center"><i
-                                                class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>400</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-                                <span>4.4 (260)</span>
-                            </div>
-                        </td>
-                        <td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i
-                                    class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i
-                                        class="isax isax-edit-2"></i></a>
-                                <a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal"
-                                    data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endforeach
 
                 </tbody>
             </table>
@@ -255,8 +172,7 @@
             <div class="col-md-10">
                 <ul class="pagination lms-page justify-content-center justify-content-md-end mt-2 mt-md-0">
                     <li class="page-item prev">
-                        <a class="page-link" href="javascript:void(0)" tabindex="-1"><i
-                                class="fas fa-angle-left"></i></a>
+                        <a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
                     </li>
                     <li class="page-item first-page active">
                         <a class="page-link" href="javascript:void(0)">1</a>

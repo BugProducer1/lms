@@ -9,7 +9,7 @@
         </div>
         <ul class="settings-nav d-flex align-items-center flex-wrap border bg-light-900 rounded">
             <li><a href="{{ route('student.settings') }}" class="active">Edit Profile</a></li>
-            <li><a href="{{ route('student.changepassword') }}">Security</a></li>
+            <li><a href="#">Security</a></li>
         </ul>
         <div class="card">
             <div class="card-body">

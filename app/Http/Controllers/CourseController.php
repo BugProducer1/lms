@@ -11,6 +11,7 @@ use App\Models\Question;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 $user = Auth::user();
 
@@ -140,7 +141,8 @@ class CourseController extends Controller
     public function dashboard()
     {
         $user = auth()->user();
-        // You can also filter by Auth::id() if needed
+
+        // Get courses created by the current user
         $courses = Course::with([
             'faqs',
             'learningOutcomes',
@@ -148,7 +150,72 @@ class CourseController extends Controller
             'topics.lessons'
         ])->where('user_id', auth()->id())->get();
 
-        return view('admin.dashboard', compact('courses','user'));
+        $courseCount = $courses->count();
+
+        $courseIds = $courses->pluck('id');
+
+        // Count total unique students across all courses
+        $studentCount = DB::table('enrollments')
+            ->whereIn('course_id', $courseIds)
+            ->distinct('user_id')
+            ->count('user_id');
+
+        // Attach enrollment count to each course manually
+        foreach ($courses as $course) {
+            $course->enrollment_count = DB::table('enrollments')
+                ->where('course_id', $course->id)
+                ->count();
+        }
+
+        return view('admin.dashboard', compact('courses', 'user', 'courseCount', 'studentCount'));
+    }
+
+    public function courseList()
+    {
+        $user = auth()->user();
+
+        // Get courses created by the current user
+        $courses = Course::with([
+            'faqs',
+            'learningOutcomes',
+            'questions.choices',
+            'topics.lessons'
+        ])->where('user_id', auth()->id())->get();
+
+        $courseCount = $courses->count();
+        $courseIds = $courses->pluck('id');
+
+        // Count total unique students across all courses
+        $studentCount = DB::table('enrollments')
+            ->whereIn('course_id', $courseIds)
+            ->distinct('user_id')
+            ->count('user_id');
+
+        // Attach enrollment count per course
+        foreach ($courses as $course) {
+            $course->enrollment_count = DB::table('enrollments')
+                ->where('course_id', $course->id)
+                ->count();
+        }
+
+        // Count courses by status
+        $activeCount = Course::where('user_id', auth()->id())->where('course_status', NULL)->count();
+        $pendingCount = Course::where('user_id', auth()->id())->where('course_status', '0')->count();
+        $draftCount = Course::where('user_id', auth()->id())->where('course_status', '1')->count();
+
+        return view('admin.courselist', compact(
+            'courses',
+            'user',
+            'courseCount',
+            'studentCount',
+            'activeCount',
+            'pendingCount',
+            'draftCount'
+        ));
+    }
+
+    public function instructorquiz(){
+        return view('admin.quiz');
     }
 
     public function show($id)

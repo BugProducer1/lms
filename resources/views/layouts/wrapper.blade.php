@@ -61,36 +61,40 @@
                     <div>
                         <h6 class="mb-3">Main Menu</h6>
                         <ul class="mb-3 pb-1">
-                            <li>
-                                <a href="/instructor/dashboard"
-                                    class="d-inline-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}"><i
-                                        class="isax isax-grid-35 me-2"></i>Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor.profile') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('instructorprofile') ? 'active' : '' }}"><i
-                                        class="fa-solid fa-user me-2 "></i>My
-                                    Profile</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor.courselist') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('courselist') ? 'active' : '' }}"><i
-                                        class="isax isax-teacher5 me-2"></i>Courses</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor.quiz') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('instructorquiz') ? 'active' : '' }}"><i
-                                        class="isax isax-award5 me-2"></i>Quiz</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor.quizresult') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('quizresult') ? 'active' : '' }}"><i
-                                        class="isax isax-medal-star5 me-2"></i>Quiz Results</a>
-                            </li>
-                            <li>
-                                <a href="instructor-message.html" class="d-inline-flex align-items-center"><i
-                                        class="isax isax-messages-35 me-2"></i>Messages</a>
-                            </li>
+                            @if ($user && $user->completed_profile == 1)
+                                <li>
+                                    <a href="/instructor/dashboard"
+                                        class="d-inline-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}"><i
+                                            class="isax isax-grid-35 me-2"></i>Dashboard</a>
+                                </li>
+                                {{-- <li>
+                                    <a href="{{ route('instructor.profile') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('instructorprofile') ? 'active' : '' }}"><i
+                                            class="fa-solid fa-user me-2 "></i>My
+                                        Profile</a>
+                                </li> --}}
+                                <li>
+                                    <a href="{{ route('instructor.courselist') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('courselist') ? 'active' : '' }}"><i
+                                            class="isax isax-teacher5 me-2"></i>Courses</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('instructor.quiz') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('instructorquiz') ? 'active' : '' }}"><i
+                                            class="isax isax-award5 me-2"></i>Quiz</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('instructor.quizresult') }}"
+                                        class="d-inline-flex align-items-center {{ Request::is('quizresult') ? 'active' : '' }}"><i
+                                            class="isax isax-medal-star5 me-2"></i>Quiz Results</a>
+                                </li>
+                                <li>
+                                    <a href="instructor-message.html" class="d-inline-flex align-items-center"><i
+                                            class="isax isax-messages-35 me-2"></i>Messages</a>
+                                </li>
+                            @else
+                                <p>Please complete your profile</p>
+                            @endif
                         </ul>
                         <hr>
                         <h6 class="mb-3">Account Settings</h6>

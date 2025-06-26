@@ -114,12 +114,7 @@
                                         <div class="bg-light border p-4 rounded-3">
                                             <h6 class="mb-2">What will students learn in your course?</h6>
                                             <div class="input-block" id="input-block">
-                                                <div class="d-flex align-items-center add-new-input">
-                                                    <input type="text" class="form-control"
-                                                        value="Become a UX designer">
-                                                    <a href="javascript:void(0);" class="link-trash"><i
-                                                            class="isax isax-trash"></i></a>
-                                                </div>
+
                                             </div>
                                             <div class="d-flex align-items-center justify-content-end">
                                                 <a href="javascript:void(0);"

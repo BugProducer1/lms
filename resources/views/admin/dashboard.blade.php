@@ -6,7 +6,7 @@
 @section('content')
     <div class="col-lg-9">
         <div class="row">
-            <div class="col-md-6 col-xl-4">
+            {{-- <div class="col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -15,12 +15,12 @@
                             </span>
                             <div>
                                 <span class="d-block">Active Courses</span>
-                                <h4 class="fs-24 mt-1">08</h4>
+                                <h4 class="fs-24 mt-1">{{ $courses->count() }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
@@ -30,7 +30,7 @@
                             </span>
                             <div>
                                 <span class="d-block">Total Students</span>
-                                <h4 class="fs-24 mt-1">17</h4>
+                                <h4 class="fs-24 mt-1">{{ $studentCount }}</h4>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             </span>
                             <div>
                                 <span class="d-block">Total Courses</span>
-                                <h4 class="fs-24 mt-1">11</h4>
+                                <h4 class="fs-24 mt-1">{{ $courses->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>0</td> {{-- You can replace this with dynamic data like number of lessons --}}
+                            <td>{{ $course->enrollment_count }}</td>
                             <td>Published</td>
                         </tr>
                     @endforeach

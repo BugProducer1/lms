@@ -176,3 +176,22 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        // Toggle for New Password
+        $('.toggle-passwords').on('click', function() {
+            let input = $('input[name="password"]');
+            let type = input.attr('type') === 'password' ? 'text' : 'password';
+            input.attr('type', type);
+            $(this).toggleClass('isax-eye isax-eye-slash');
+        });
+
+        // Toggle for Confirm Password
+        $('.toggle-passworda').on('click', function() {
+            let input = $('input[name="password_confirmation"]');
+            let type = input.attr('type') === 'password' ? 'text' : 'password';
+            input.attr('type', type);
+            $(this).toggleClass('isax-eye isax-eye-slash');
+        });
+    });
+</script>
