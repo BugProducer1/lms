@@ -8,7 +8,7 @@
             <div class="col-xxl col-lg-4 col-md-6">
                 <div class="card bg-success">
                     <div class="card-body">
-                        <h6 class="fw-medium mb-1 text-white">Active Courses</h6>
+                        <h6 class="fw-medium mb-1 text-white">Active Subject</h6>
                         <h4 class="fw-bold text-white">{{ $activeCount }}</h4>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
             <div class="col-xxl col-lg-4 col-md-6">
                 <div class="card bg-secondary">
                     <div class="card-body">
-                        <h6 class="fw-medium mb-1 text-white">Pending Courses</h6>
+                        <h6 class="fw-medium mb-1 text-white">Pending Subject</h6>
                         <h4 class="fw-bold text-white">{{ $pendingCount }}</h4>
                     </div>
                 </div>
@@ -24,14 +24,14 @@
             <div class="col-xxl col-lg-4 col-md-6">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <h6 class="fw-medium mb-1 text-white">Draft Courses</h6>
+                        <h6 class="fw-medium mb-1 text-white">Draft Subject</h6>
                         <h4 class="fw-bold text-white">{{ $draftCount }}</h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="page-title d-flex align-items-center justify-content-between">
-            <h5 class="fw-bold">Courses</h5>
+            <h5 class="fw-bold">Subject</h5>
             <div class="d-flex align-items-center list-icons">
                 <a href="instructor-course.html" class="active me-2"><i class="isax isax-task"></i></a>
                 <a href="instructor-course-grid.html"><i class="isax isax-element-3"></i></a>
@@ -73,7 +73,7 @@
             <table class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th>Course Name</th>
+                        <th>Subject Name</th>
                         <th>Students</th>
                         <th>Ratings</th>
                         <th>Status</th>

@@ -44,7 +44,7 @@
                                 <img src="{{ asset('img/icon/book-2.svg') }}" alt="">
                             </span>
                             <div>
-                                <span class="d-block">Total Courses</span>
+                                <span class="d-block">Total Subject</span>
                                 <h4 class="fs-24 mt-1">{{ $courses->count() }}</h4>
                             </div>
                         </div>
@@ -52,12 +52,12 @@
                 </div>
             </div>
         </div>
-        <h5 class="mb-3 fw-bold">Recently Created Courses</h5>
+        <h5 class="mb-3 fw-bold">Recently Created Subject</h5>
         <div class="table-responsive custom-table">
             <table class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th>Courses</th>
+                        <th>Subject</th>
                         <th>Enrolled</th>
                         <th>Status</th>
                     </tr>

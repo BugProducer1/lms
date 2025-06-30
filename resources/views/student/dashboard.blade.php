@@ -16,7 +16,7 @@
                             <span class="icon-box bg-primary-transparent me-2 me-xxl-3 flex-shrink-0"><img
                                     src="{{ asset('img/icon/graduation.svg') }}" alt=""></span>
                             <div>
-                                <span class="d-block">Enrolled Courses</span>
+                                <span class="d-block">Enrolled Subject</span>
                                 <h4 class="fs-24 mt-1">{{ $courses->count() }}</h4>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <span class="icon-box bg-secondary-transparent me-2 me-xxl-3 flex-shrink-0"><img
                                     src="{{ asset('img/icon/book.svg') }}" alt=""></span>
                             <div>
-                                <span class="d-block">Active Courses</span>
+                                <span class="d-block">Active Subject</span>
                                 <h4 class="fs-24 mt-1">{{ $activeCoursesCount }}</h4>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             <span class="icon-box bg-success-transparent me-2 me-xxl-3 flex-shrink-0"><img
                                     src="{{ asset('img/icon/bookmark.svg') }}" alt=""></span>
                             <div>
-                                <span class="d-block">Completed Courses</span>
+                                <span class="d-block">Completed Subject</span>
                                 <h4 class="fs-24 mt-1">{{ $completedCoursesCount }}</h4>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <h5 class="mb-3 fs-18">Recently Enrolled Courses</h5>
+        <h5 class="mb-3 fs-18">Recently Enrolled Subject</h5>
         <div class="row">
             @forelse ($courses as $course)
                 <div class="col-xl-4 col-md-6">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-center">You haven't enrolled in any courses yet.</p>
+                <p class="text-center">You haven't enrolled in any Subject yet.</p>
             @endforelse
         </div>
         <div>

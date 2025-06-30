@@ -81,6 +81,15 @@
                             <label class="form-label">Instructor ID <span class="text-danger">*</span></label>
                             <input type="text" name="userID" value="{{ $user->userID }}" class="form-control">
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Department <span class="text-danger">*</span></label>
+                            <select name="" class="form-control" id="">
+                                <option value="">BSIT</option>
+                                <option value="">BSED</option>
+                                <option value="">CRIM</option>
+                                <option value="">BSHM</option>
+                            </select>
+                        </div>
                         <div class="col-md-12">
                             <button class="btn btn-secondary rounded-pill" type="submit">Update Profile</button>
                         </div>

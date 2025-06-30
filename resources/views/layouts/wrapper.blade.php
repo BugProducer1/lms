@@ -76,17 +76,12 @@
                                 <li>
                                     <a href="{{ route('instructor.courselist') }}"
                                         class="d-inline-flex align-items-center {{ Request::is('courselist') ? 'active' : '' }}"><i
-                                            class="isax isax-teacher5 me-2"></i>Courses</a>
+                                            class="isax isax-teacher5 me-2"></i>Subject</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('instructor.quiz') }}"
                                         class="d-inline-flex align-items-center {{ Request::is('instructorquiz') ? 'active' : '' }}"><i
                                             class="isax isax-award5 me-2"></i>Quiz</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('instructor.quizresult') }}"
-                                        class="d-inline-flex align-items-center {{ Request::is('quizresult') ? 'active' : '' }}"><i
-                                            class="isax isax-medal-star5 me-2"></i>Quiz Results</a>
                                 </li>
                                 <li>
                                     <a href="instructor-message.html" class="d-inline-flex align-items-center"><i

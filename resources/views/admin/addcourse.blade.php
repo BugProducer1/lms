@@ -256,7 +256,7 @@
                                 </div>
 
                                 <div class="input-block">
-                                    <label class="form-label">Message to a reviewer</label>
+                                    <label class="form-label">Notes</label>
                                     <textarea class="form-control"></textarea>
                                 </div>
 
@@ -573,8 +573,8 @@
       <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}" data-bs-parent="#faqAccordion">
         <div class="accordion-body d-flex justify-content-between align-items-start bg-white p-3 border rounded-3 mb-3">
           <div>
-            <input type="text" name="question[]" value="${question}">
-            <input type="text" name="answer[]" value="${answer}">
+            <input type="hidden" name="question[]" value="${question}">
+            <input type="hidden" name="answer[]" value="${answer}">
             <p class="text-gray-5 mb-0">${answer}</p>
           </div>
           <div class="d-flex flex-column align-items-center ms-3">

@@ -9,6 +9,7 @@ use App\Models\LearningOutcome;
 use App\Models\Lesson;
 use App\Models\Question;
 use App\Models\Topic;
+use App\Models\QuizResult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -215,7 +216,24 @@ class CourseController extends Controller
     }
 
     public function instructorquiz(){
-        return view('admin.quiz');
+        $user = auth()->user();
+
+        // Get courses created by this instructor, along with question count
+        $courses = Course::withCount('questions')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('admin.quiz', compact('courses'));
+    }
+   public function quizresult($courseId)
+    {
+        $course = Course::findOrFail($courseId);
+
+        $results = QuizResult::with('user')
+            ->where('course_id', $courseId)
+            ->get();
+
+        return view('admin.quizresult', compact('course', 'results'));
     }
 
     public function show($id)

@@ -29,8 +29,7 @@
                     <div class="d-flex align-items-center">
                         <span
                             class="avatar flex-shrink-0 avatar-xxl avatar-rounded me-3 border border-white border-3 position-relative">
-                            <img src="{{ $user->userPhoto ? $user->userPhoto : asset('img/user/user-02.jpg') }}"
-                                alt="Profile" class="img-fluid">
+                            <img src="#" alt="Profile" class="img-fluid">
                             <span class="verify-tick"><i class="isax isax-verify5"></i></span>
                         </span>
                         <div>
@@ -70,17 +69,12 @@
                                 <li>
                                     <a href="{{ route('student.enrolledcourses') }}"
                                         class="d-inline-flex align-items-center {{ Request::is('enrolledcourses') ? 'active' : '' }}"><i
-                                            class="isax isax-teacher5 me-2"></i>Enrolled Courses</a>
+                                            class="isax isax-teacher5 me-2"></i>Enrolled Subject</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('student.quizattemps') }}"
                                         class="d-inline-flex align-items-center {{ Request::is('student/quizattemps') ? 'active' : '' }}"><i
                                             class="isax isax-award5 me-2"></i>My Quiz Attemps</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('instructor.quizresult') }}"
-                                        class="d-inline-flex align-items-center {{ Request::is('quizresult') ? 'active' : '' }}"><i
-                                            class="isax isax-medal-star5 me-2"></i>Quiz Results</a>
                                 </li>
                                 <li>
                                     <a href="instructor-message.html" class="d-inline-flex align-items-center"><i

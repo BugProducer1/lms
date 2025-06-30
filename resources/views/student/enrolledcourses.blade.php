@@ -1,11 +1,11 @@
 @extends('layouts.studentapp')
 
-@section('title', 'Enrolled Courses')
+@section('title', 'Enrolled Subject')
 
 @section('content')
     <div class="col-lg-9">
         <div class="page-title d-flex flex-wrap gap-3 align-items-center justify-content-between">
-            <h5>Enrolled Courses</h5>
+            <h5>Enrolled Subject</h5>
             <div class="tab-list">
                 <ul class="nav mb-0 gap-2" role="tablist">
                     <li class="nav-item mb-0" role="presentation">
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center">You haven't enrolled in any courses yet.</p>
+                        <p class="text-center">You haven't enrolled in any Subject yet.</p>
                     @endforelse
                 </div>
             </div>
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center">You don't have any active courses yet.</p>
+                        <p class="text-center">You don't have any active Subject yet.</p>
                     @endforelse
                 </div>
             </div>
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-center">You haven't completed any courses yet.</p>
+                        <p class="text-center">You haven't completed any Subject yet.</p>
                     @endforelse
                 </div>
             </div>

@@ -101,7 +101,7 @@
                                 <a href="#">Home</a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#">Courses</a>
+                                <a href="#">Subject</a>
                             </li>
                         </ul>
 
@@ -119,14 +119,14 @@
                         </div>
                         <div class="menu-login">
                             <a href="login.html" class="btn btn-primary w-100 mb-2"><i
-                                    class="isax isax-user me-2"></i>Sign In</a>
+                                    class="isax isax-user me-2"></i>Login</a>
                             <a href="register.html" class="btn btn-secondary w-100"><i
                                     class="isax isax-user-edit me-2"></i>Register</a>
                         </div>
                     </div>
                     <div class="header-btn d-flex align-items-center">
                         <a href="/login" class="btn btn-primary d-inline-flex align-items-center me-2">
-                            Sign In
+                            Login
                         </a>
                         <a href="/register" class="btn btn-secondary me-0">
                             Register
@@ -151,7 +151,7 @@
                             <h1 class="mb-4 text-white">Find the Best <span>Lessons</span> from the Best
                                 <span>Mentors</span> in BCC
                             </h1>
-                            <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4">Our specialized online courses
+                            <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4">Our specialized online Subject
                                 are designed to bring the classroom experience to you, no matter where you are.</p>
 
                             <form class="banner-search"
@@ -168,7 +168,7 @@
                                     </ul>
                                 </div>
                                 <input type="text" name="search" class="border-0 form-control p-0"
-                                    placeholder="Search for Courses, Instructors">
+                                    placeholder="Search for Subject, Instructors">
                                 <button type="submit" class="btn btn-secondary ms-auto"><i
                                         class="isax isax-arrow-right-1"></i></button>
                             </form>
@@ -215,7 +215,7 @@
                                     <i class="isax isax-bookmark5 fs-24"></i>
                                 </div>
                                 <h5 class="mt-3 mb-1">Lifetime Access</h5>
-                                <p>When you enroll in our courses, you’re not just signing up for a temporary learning
+                                <p>When you enroll in our Subject, you’re not just signing up for a temporary learning
                                     to experience you’re making.</p>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                                     <img class="rounded-pill" src="{{ asset('img/user/user-28.jpg') }}"
                                         alt="img">
                                 </div>
-                                <p class="text-gray-9 mb-0">“All courses are incredibly help people to achieve their
+                                <p class="text-gray-9 mb-0">“All Subject are incredibly help people to achieve their
                                     goals”</p>
                             </div>
                         </div>
@@ -297,9 +297,9 @@
             <div class="container">
                 <div class="section-header text-center">
                     <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Featured
-                        Courses</span>
+                        Subject</span>
                     <h2>What’s New in DreamsLMS</h2>
-                    <p>Discover our featured courses, specially curated to help you gain in-demand skills</p>
+                    <p>Discover our featured Subject, specially curated to help you gain in-demand skills</p>
                 </div>
                 <div class="feature-course-slider-2 row">
                     @foreach ($courses as $course)
@@ -345,7 +345,7 @@
                 </div>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="course-list.html" class="btn btn-primary btn-md">View All Courses</a>
+                    <a href="course-list.html" class="btn btn-primary btn-md">View All Subject</a>
                 </div>
             </div>
         </section>
@@ -362,7 +362,7 @@
                                 Learning</span>
                             <h2>Creating a community of learners.</h2>
                             <p>We're dedicated to transforming education by providing a diverse range of high-quality
-                                courses that cater to learners of all levels.</p>
+                                Subject that cater to learners of all levels.</p>
                         </div>
                         <div class="community-item d-flex align-items-center">
                             <span class="community-icon-1">
