@@ -48,7 +48,7 @@
                 <div class="col-md-6">
                     <div class="d-flex align-items-center flex-wrap gap-3 justify-content-md-end">
                         <a href="{{ route('instructor.addcourse') }}" class="btn btn-secondary rounded-pill">Add New
-                            Course</a>
+                            Subject</a>
                     </div>
                 </div>
             </div>
