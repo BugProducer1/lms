@@ -243,17 +243,29 @@ class CourseController extends Controller
             'faqs',
             'learningOutcomes',
             'questions.choices',
-            'topics.lessons'
+            'topics.lessons',
+            'enrollments'
         ])->findOrFail($id);
 
-        return view('admin.coursedetails', compact('course'));
+        $enrolledCount = $course->enrollments->count();
+
+        $lessonCount = \App\Models\Lesson::whereIn('topic_id', function ($query) use ($id) {
+        $query->select('id')->from('topics')->where('course_id', $id);
+    })->count();
+
+        $isEnrolled = false;
+        if (auth()->check()) {
+            $isEnrolled = $course->enrollments()->where('user_id', auth()->id())->exists();
+        }
+
+        return view('admin.coursedetails', compact('course', 'enrolledCount', 'isEnrolled','lessonCount'));
     }
 
     public function enroll($courseId)
     {
         $user = auth()->user();
 
-        // Prevent duplicate enrollment
+
         if (!$user->enrolledCourses->contains($courseId)) {
             $user->enrolledCourses()->attach($courseId);
         }

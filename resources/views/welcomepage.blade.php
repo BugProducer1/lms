@@ -66,7 +66,7 @@
     <div class="main-wrapper">
 
         <!-- Header -->
-        <header class="header-one">
+        <header class="header-one" style="background-color:#ffff">
             <div class="container">
                 <div class="header-nav">
                     <div class="navbar-header">
@@ -96,14 +96,14 @@
                                 <i class="fas fa-times"></i>
                             </a>
                         </div>
-                        <ul class="main-nav">
+                        {{-- <ul class="main-nav">
                             <li class="has-submenu megamenu active">
                                 <a href="#">Home</a>
                             </li>
                             <li class="has-submenu">
                                 <a href="#">Subject</a>
                             </li>
-                        </ul>
+                        </ul> --}}
 
                         <div class="menu-dropdown">
                             <div class="cart-item">
@@ -154,7 +154,7 @@
                             <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4">Our specialized online Subject
                                 are designed to bring the classroom experience to you, no matter where you are.</p>
 
-                            <form class="banner-search"
+                            {{-- <form class="banner-search"
                                 action="https://dreamslms.dreamstechnologies.com/html/template/course-list.html">
                                 <div class="dropdown">
                                     <a class="hero-dropdown" href="#" data-bs-toggle="dropdown"
@@ -171,7 +171,7 @@
                                     placeholder="Search for Subject, Instructors">
                                 <button type="submit" class="btn btn-secondary ms-auto"><i
                                         class="isax isax-arrow-right-1"></i></button>
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
                 </div>

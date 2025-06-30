@@ -107,7 +107,17 @@
     </div>
 </footer>
 <!-- /Footer -->
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const toastEl = document.querySelector('.toast');
+        if (toastEl) {
+            const bsToast = new bootstrap.Toast(toastEl, {
+                delay: 3000
+            });
+            bsToast.show();
+        }
+    });
+</script>
 
 <!-- /Main Wrapper -->
 

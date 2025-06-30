@@ -46,9 +46,6 @@ Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(func
         return view('admin.changepassword');
     })->name('instructor.changepassword');
 
-    // Route::get('quizresult', function(){
-    //     return view('admin.quizresult');
-    // })->name('instructor.quizresult');
 
     Route::get('/addcourse', function(){
         return view('/admin.addcourse');
@@ -66,7 +63,7 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
         ->name('student.quiz.submit');
     Route::get('/quizquestion/{course}', [StudentController::class, 'quizQuestion'])->name('student.quizquestion');
 
-//    Route::get('/settings', fn() => view('student.settings'))->name('student.settings');
+
    Route::get('/settings', [StudentController::class, 'settings'])->name('student.settings');
    Route::get('/changepassword', fn() => view('student.changepassword'))->name('student.changepassword');
    Route::get('/coursedetails', fn() => view('student.coursedetails'))->name('student.coursedetails');
@@ -76,9 +73,7 @@ Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function()
         ->name('student.coursewatch');
 
     Route::get('/studentprofile', [StudentController::class, 'studentProfile'])->name('student.profile');
-//    Route::get('/studentprofile', function(){
-//         return view('student.profile');
-//     })->name('student.profile');
+
 });
 
 Route::middleware('auth')->group(function () {

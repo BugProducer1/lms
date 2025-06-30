@@ -6,14 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Dreams LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
-    <meta name="keywords"
-        content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
-    <meta name="author" content="Dreams Technologies">
     <meta name="robots" content="index, follow">
 
-    <title>Dreams LMS | Advanced Learning Management System Template</title>
+    <title>StudyBuddy</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">

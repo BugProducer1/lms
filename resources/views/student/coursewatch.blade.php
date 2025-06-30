@@ -6,14 +6,14 @@
         <div class="course-watch-section">
             <div class="row">
                 <div class="col-lg-4  border-end">
-                    <div class="progress-overview-section">
+                    <div class="progress-overview-section position-relative" style="padding-bottom: 100px;">
                         <div class="mb-4">
-                            <a href="javascript:void(0);" class="back-to-course"><i
-                                    class="isax isax-arrow-left me-1"></i>Back to Course</a>
+                            <a href="javascript:void(0);" class="back-to-course">
+                                <i class="isax isax-arrow-left me-1"></i>Back to Course
+                            </a>
                         </div>
-                        <h3>
-                            {{ $course->Title }}
-                        </h3>
+
+                        <h3>{{ $course->Title }}</h3>
 
                         <div class="accordions-items-seperate" id="accordionSpacingExample">
                             @foreach ($course->topics as $index => $topic)
@@ -65,7 +65,17 @@
                                 </div>
                             @endforeach
                         </div>
+
+                        <div class="take_course position-absolute start-50 translate-middle-x"
+                            style="bottom: 20px; width: 80%;">
+                            <a href="{{ route('student.quizquestion', ['course' => $course->id]) }}"
+                                class="btn btn-dark btn-sm w-100 d-inline-flex justify-content-center align-items-center"
+                                style="font-size:20px">
+                                Take Quiz
+                            </a>
+                        </div>
                     </div>
+
                 </div>
                 <div class="col-lg-8">
                     <div class="course-watch-content">

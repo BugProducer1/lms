@@ -2,6 +2,17 @@
 
 @section('title', 'Course Details')
 
+@php
+    function convertToEmbed($url)
+    {
+        if (strpos($url, 'watch?v=') !== false) {
+            return str_replace('watch?v=', 'embed/', $url);
+        }
+        return $url;
+    }
+
+    $embedUrl = convertToEmbed($course->CourseVideo);
+@endphp
 
 <section class="course-details-two">
     <div class="container">
@@ -10,18 +21,21 @@
                 <div class="card bg-light">
                     <div class="card-body d-lg-flex align-items-center">
                         <div class="position-relative">
-                            <a href="https://www.youtube.com/embed/1trvO6dqQUI" id="openVideoBtn" target="_blank">
+                            <<a href="{{ $embedUrl }}" id="openVideoBtn" target="_blank"
+                                data-video="{{ $embedUrl }}">
                                 <img class="img-fluid rounded-2" src="{{ asset('img/course/video-bg.jpg') }}"
                                     alt="img">
                                 <div class="play-icon">
                                     <i class="ti ti-player-play-filled fs-28"></i>
                                 </div>
-                            </a>
+                                </a>
                         </div>
-                        <div id="videoModal">
-                            <div class="modal-content1">
-                                <span class="close-btn" id="closeModal">&times;</span>
-                                <iframe id="youtubeIframe" allowfullscreen></iframe>
+                        <div id="videoModal"
+                            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center;">
+                            <div style="position: relative; width: 80%; max-width: 800px;">
+                                <iframe id="youtubeIframe" width="100%" height="400" frameborder="0"
+                                    allowfullscreen></iframe>
+                                <button id="closeModal" style="position: absolute; top: 10px; right: 10px;">X</button>
                             </div>
                         </div>
                         <div class="w-100 ps-lg-4">
@@ -29,18 +43,20 @@
                             <p class="fs-14 mb-3">{{ $course->ShortDescription }}</p>
                             <div class="d-flex align-items-center gap-2 gap-sm-3 gap-xl-4 flex-wrap my-3 my-sm-0">
                                 <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2"
-                                        src="{{ asset('img/icons/book.svg') }}" alt="img">12+ Lesson</p>
+                                        src="{{ asset('img/icons/book.svg') }}" alt="img">{{ $lessonCount }}
+                                    Lesson</p>
+
                                 <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2"
-                                        src="{{ asset('img/icons/timer-start.svg') }}" alt="img">9hr 30min</p>
-                                <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2"
-                                        src="{{ asset('img/icons/people.svg') }}" alt="img">32 students enrolled
+                                        src="{{ asset('img/icons/people.svg') }}" alt="img">{{ $enrolledCount }}
+                                    students enrolled
                                 </p>
-                                <span class="badge badge-sm rounded-pill bg-warning fs-12">Web Development</span>
+                                <span
+                                    class="badge badge-sm rounded-pill bg-warning fs-12">{{ $course->Category }}</span>
                             </div>
                             <div class="d-sm-flex align-items-center justify-content-sm-between mt-3">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-lg">
-                                        <img class="rounded-circle" src="{{ asset('img/avatar/avatar10.jpg') }}"
+                                        <img class="rounded-circle" src="{{ $course->instructor->userPhoto }}"
                                             alt="img">
                                     </div>
                                     <div class="ms-2">
@@ -181,20 +197,34 @@
                                 <a class="btn d-flex btn-wish" href="#"><i
                                         class="ti ti-share me-1 fs-18"></i>Share</a>
                             </div>
-                            <form action="{{ route('courses.enroll', $course->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary w-100 mt-3 btn-enroll">Enroll
-                                    Now</button>
-                            </form>
+                            @if (auth()->check())
+                                @if ($isEnrolled)
+                                    <button class="btn btn-success w-100 mt-3" disabled>Enrolled</button>
+                                @else
+                                    <form action="{{ route('courses.enroll', $course->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary w-100 mt-3 btn-enroll">Enroll
+                                            Now</button>
+                                    </form>
+                                @endif
+
+                            @endif
+                            @guest
+                                <a href="{{ route('login') }}" class="btn btn-outline-primary w-100 mt-3">Login to
+                                    Enroll</a>
+                            @else
+                                {{-- same as above --}}
+                            @endguest
                         </div>
                     </div>
-                    <div class="card">
+                    {{-- <div class="card">
                         <div class="card-body cou-features">
                             <h5 class="subs-title">Course Features</h5>
                             <ul>
                                 <li>
                                     <p class="mb-0"><img class="me-2"
-                                            src="{{ asset('/img/icons/people2.svg') }}" alt="img">Enrolled: 32
+                                            src="{{ asset('/img/icons/people2.svg') }}" alt="img">Enrolled:
+                                        {{ $enrolledCount }}
                                         students</p>
                                 </li>
                                 <li>
@@ -216,7 +246,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

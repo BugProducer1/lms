@@ -1754,31 +1754,29 @@ Version      : 1.0
 				});
 			}
 
-		if($('#openVideoBtn').length > 0) {
-			document.addEventListener("DOMContentLoaded", function () {
-				const openVideoBtn = document.getElementById('openVideoBtn');
-				const videoModal = document.getElementById('videoModal');
-				const closeModal = document.getElementById('closeModal');
-				const youtubeIframe = document.getElementById('youtubeIframe');
+		if ($('#openVideoBtn').length > 0) {
+            document.addEventListener("DOMContentLoaded", function () {
+                const openVideoBtn = document.getElementById('openVideoBtn');
+                const videoModal = document.getElementById('videoModal');
+                const closeModal = document.getElementById('closeModal');
+                const youtubeIframe = document.getElementById('youtubeIframe');
 
-				// Ensure all necessary elements are present
-				if (openVideoBtn && videoModal && closeModal && youtubeIframe) {
-					// YouTube video URL with an actual video ID
-					const youtubeVideoUrl = "https://www.youtube.com/embed/1trvO6dqQUI";
+                if (openVideoBtn && videoModal && closeModal && youtubeIframe) {
+                    const youtubeVideoUrl = openVideoBtn.getAttribute('data-video');
 
-					openVideoBtn.addEventListener('click', (e) => {
-						e.preventDefault();
-						youtubeIframe.src = youtubeVideoUrl;
-						videoModal.style.display = 'flex';
-					});
+                    openVideoBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        youtubeIframe.src = youtubeVideoUrl;
+                        videoModal.style.display = 'flex';
+                    });
 
-					closeModal.addEventListener('click', () => {
-						videoModal.style.display = 'none';
-						youtubeIframe.src = ""; // Reset the iframe to stop the video
-					});
-				}
-			});
-		}
+                    closeModal.addEventListener('click', () => {
+                        videoModal.style.display = 'none';
+                        youtubeIframe.src = "";
+                    });
+                }
+            });
+        }
 
 		// // Testimonial slider 5
 

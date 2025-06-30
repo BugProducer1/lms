@@ -31,8 +31,7 @@
                             <div class="d-flex align-items-center gap-2 gap-sm-3 gap-xl-4 flex-wrap my-3 my-sm-0">
                                 <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2"
                                         src="{{ asset('img/icons/book.svg') }}" alt="img">12+ Lesson</p>
-                                <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2"
-                                        src="{{ asset('img/icons/timer-start.svg') }}" alt="img">9hr 30min</p>
+
                                 <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2"
                                         src="{{ asset('img/icons/people.svg') }}" alt="img">32 students enrolled
                                 </p>
