@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Models\Course;
+use App\Http\Controllers\AICourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,9 @@ use App\Models\Course;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/learn', [AICourseController::class, 'ask']);
+// Route::post('/learn', [AICourseController::class, 'handle']);
+Route::get('/course/{id}', [AICourseController::class, 'view']);
 
 Route::get('/', function () {
     $courses = Course::with('user')->get();
@@ -53,6 +57,7 @@ Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(func
 });
 
 Route::middleware(['auth', 'role.Student'])->prefix('student')->group(function(){
+    Route::post('/learn', [AICourseController::class, 'handle'])->name('student.generate');
     Route::post('/update-profile', [StudentController::class, 'updateProfile'])->name('student.updateProfile');
     Route::post('/courses/{course}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
     Route::get('/', [StudentController::class, 'myCourses'])->name('student.mycourses');

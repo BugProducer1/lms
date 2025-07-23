@@ -428,7 +428,7 @@
                             </ol>
                         </div>
                     </div>
-                    <div class="card">
+                    {{-- <div class="card">
                         <div class="card-body">
                             <h5 class="subs-title mb-3">Post A comment</h5>
                             <form class="course-details-form">
@@ -463,7 +463,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-4">

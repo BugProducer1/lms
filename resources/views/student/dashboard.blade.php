@@ -8,7 +8,7 @@
             <img src="{{ asset('img/shapes/withdraw-bg1.svg') }}" src="{{ asset('') }}" class="quiz-ans-bg1" alt="img">
             <img src="{{ asset('img/shapes/withdraw-bg2.svg') }}" class="quiz-ans-bg2" alt="img">
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
@@ -51,59 +51,48 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <h5 class="mb-3 fs-18">Recently Enrolled Subject</h5>
+        </div> --}}
+        <h5 class="mb-3 fs-18">Recently Generated Subject</h5>
         <div class="row">
             @forelse ($courses as $course)
                 <div class="col-xl-4 col-md-6">
-                    <div class="course-item-two course-item mx-0">
+                    <div class="course-item">
                         <div class="course-img">
-                            <a href="{{ route('student.coursewatch', $course->id) }}">
-                                <img src="{{ $course->CourseMedia }}" alt="Course Image" class="img-fluid">
+                            <a href="{{ route('users.coursedetails', ['id' => $course->id]) }}">
+                                <img src="{{ $course->CourseMedia }}" alt="img" class="img-fluid">
                             </a>
                         </div>
-                        <div class="course-content">
-                            <div class="d-flex justify-content-between mb-2">
-                                <div class="d-flex align-items-center">
-                                    <a href="#" class="avatar avatar-sm">
-                                        <img src="{{ $course->instructor->userPhoto ?? asset('img/user/default.jpg') }}"
-                                            alt="Instructor" class="img-fluid rounded-circle">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="badge badge-md badge-soft-info rounded-pill">{{ $course->Category }}</span>
+                            <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
+                        </div>
+                        <div class="pb-3 border-bottom mb-3">
+                            <h5><a href="{{ route('users.coursedetails', ['id' => $course->id]) }}">{{ $course->Title }}</a>
+                            </h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="course-rating">
+                                <span class="course-user">
+                                    <a href="javascript:void(0);">
+                                        <img src="{{ asset('img/user/default.jpg') }}" alt="img" class="img-fluid">
                                     </a>
-                                    <div class="ms-2">
-                                        <a href="#" class="link-default fs-14">
-                                            {{ $course->instructor->name . ' ' . $course->instructor->last_name ?? 'Unknown Instructor' }}
-                                        </a>
-                                    </div>
-                                </div>
-                                <span class="badge bg-light fs-13 fw-medium mb-0">
-                                    {{ $course->Category ?? 'General' }}
                                 </span>
-                            </div>
-                            <h6 class="title mb-2">
-                                <a href="{{ route('student.coursewatch', $course->id) }}">
-                                    {{ $course->Title }}
-                                </a>
-                            </h6>
-                            <div class="d-flex align-items-center justify-content-between">
-                                @if ($completedCourseIds->contains($course->id))
-                                    <span class="badge bg-success">Completed</span>
-                                @else
-                                    <a href="{{ route('student.coursewatch', $course->id) }}"
-                                        class="btn btn-dark btn-sm d-inline-flex align-items-center">
-                                        Take Course<i class="isax isax-arrow-right-3 ms-1"></i>
-                                    </a>
-                                @endif
+                                <a
+                                    href="javascript:void(0);">{{ $course->user->name . ' ' . $course->user->last_name ?? 'Unknown' }}</a>
                             </div>
                         </div>
+                        <a href="{{ route('users.coursedetails', ['id' => $course->id]) }}"
+                            class="btn buy-course-btn">Enroll Course Now</a>
                     </div>
                 </div>
             @empty
-                <p class="text-center">You haven't enrolled in any Subject yet.</p>
+                <p class="text-center">You haven't Generated in any Subject yet. <a data-bs-toggle="modal"
+                        data-bs-target="#generateSubject" style="color:#ff4667">Generate Now</a> </p>
             @endforelse
         </div>
         <div>
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xl-12">
                     <div class="card mb-0">
                         <div class="card-body">
@@ -138,7 +127,66 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+        </div>
+    </div>
+
+    <div class="modal fade" id="generateSubject" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="submitQuery">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Generate Subject</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="query" id="" style="height:90px" required
+                                        placeholder="What do you want to learn ?"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="generate">Generate</button>
+                        <button class="btn btn-primary" id="loadGenerate" style="display: none" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Generating...
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#submitQuery').submit(function(e) {
+                e.preventDefault();
+                $('#generate').hide();
+                $('#loadGenerate').show();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('student.generate') }}',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#generate').show();
+                        $('#loadGenerate').hide();
+                        window.location.href = response.redirect;
+                    },
+                    error: function(response) {
+                        $('#generate').show();
+                        $('#loadGenerate').hide();
+                        console.log('Error');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

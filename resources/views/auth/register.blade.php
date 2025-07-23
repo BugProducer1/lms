@@ -105,7 +105,7 @@
                                     </div>
 
                                     <div class="mb-3 position-relative row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label class="form-label">Email<span
                                                     class="text-danger ms-1">*</span></label>
                                             <div class="position-relative">
@@ -115,15 +115,15 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Account Type<span
-                                                    class="text-danger ms-1">*</span></label>
+                                            {{-- <label class="form-label">Account Type<span
+                                                    class="text-danger ms-1">*</span></label> --}}
                                             <div class="position-relative">
                                                 <select name="role" id=""
-                                                    class="form-control form-control-lg">
-                                                    <option value="Student">Student</option>
+                                                    class="form-control form-control-lg" hidden>
+                                                    <option value="Student" selected>Student</option>
                                                     <option value="Instructor">Instructor</option>
                                                 </select>
-                                                <span><i class="isax isax-sms input-icon text-gray-7 fs-14"></i></span>
+                                                {{-- <span><i class="isax isax-sms input-icon text-gray-7 fs-14"></i></span> --}}
                                             </div>
                                         </div>
                                     </div>

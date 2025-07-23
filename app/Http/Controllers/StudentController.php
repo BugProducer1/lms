@@ -20,7 +20,12 @@ class StudentController extends Controller
         $user = auth()->user();
 
 
-        $courses = $student->enrolledCourses()->with('instructor')->get();
+        $courses = Course::with([
+            'faqs',
+            'learningOutcomes',
+            'questions.choices',
+            'topics.lessons'
+        ])->where('user_id', auth()->id())->get();
 
 
         $quizResults = QuizResult::with('course')
