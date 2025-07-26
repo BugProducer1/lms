@@ -38,17 +38,6 @@
                                 </div>
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <a href="#" class="avatar avatar-sm">
-                                                <img src="{{ $course->instructor->userPhoto ?? asset('img/user/default.jpg') }}"
-                                                    alt="Instructor" class="img-fluid rounded-circle">
-                                            </a>
-                                            <div class="ms-2">
-                                                <a href="#" class="link-default fs-14">
-                                                    {{ $course->instructor->name . ' ' . $course->instructor->last_name ?? 'Unknown Instructor' }}
-                                                </a>
-                                            </div>
-                                        </div>
                                         <span class="badge bg-light fs-13 fw-medium mb-0">
                                             {{ $course->Category ?? 'General' }}
                                         </span>
@@ -173,7 +162,7 @@
             </div>
         </div>
         <!-- /pagination -->
-        <div class="row align-items-center mt-2">
+        {{-- <div class="row align-items-center mt-2">
             <div class="col-md-2">
                 <p class="pagination-text">Page 1 of 2</p>
             </div>
@@ -197,7 +186,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
         <!-- /pagination -->
     </div>
 @endsection

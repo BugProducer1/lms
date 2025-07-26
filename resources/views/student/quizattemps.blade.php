@@ -38,7 +38,7 @@
             <p class="text-center">No Quiz</p>
         @endforelse
         <!-- /pagination -->
-        <div class="row align-items-center mt-3">
+        {{-- <div class="row align-items-center mt-3">
             <div class="col-md-2">
                 <p class="pagination-text">Page 1 of 2</p>
             </div>
@@ -61,7 +61,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
         <!-- /pagination -->
     </div>
 @endsection

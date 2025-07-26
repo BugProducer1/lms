@@ -21,14 +21,14 @@
                 <div class="card bg-light">
                     <div class="card-body d-lg-flex align-items-center">
                         <div class="position-relative">
-                            <<a href="{{ $embedUrl }}" id="openVideoBtn" target="_blank"
+                            <a href="{{ $embedUrl }}" id="openVideoBtn" target="_blank"
                                 data-video="{{ $embedUrl }}">
                                 <img class="img-fluid rounded-2" src="{{ asset('img/course/video-bg.jpg') }}"
                                     alt="img">
                                 <div class="play-icon">
                                     <i class="ti ti-player-play-filled fs-28"></i>
                                 </div>
-                                </a>
+                            </a>
                         </div>
                         <div id="videoModal"
                             style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center;">
@@ -54,7 +54,7 @@
                                     class="badge badge-sm rounded-pill bg-warning fs-12">{{ $course->Category }}</span>
                             </div>
                             <div class="d-sm-flex align-items-center justify-content-sm-between mt-3">
-                                <div class="d-flex align-items-center">
+                                {{-- <div class="d-flex align-items-center">
                                     <div class="avatar avatar-lg">
                                         <img class="rounded-circle" src="{{ $course->instructor->userPhoto }}"
                                             alt="img">
@@ -65,7 +65,7 @@
                                         </h5>
                                         <p class="fs-14">Instructor</p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="d-flex mt-sm-0 mt-2 align-items-center">
                                     <i class="fa-solid fa-star text-warning me-1"></i>
                                     <i class="fa-solid fa-star text-warning me-1"></i>

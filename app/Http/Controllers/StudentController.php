@@ -24,7 +24,8 @@ class StudentController extends Controller
             'faqs',
             'learningOutcomes',
             'questions.choices',
-            'topics.lessons'
+            'topics.lessons',
+            'enrollments'
         ])->where('user_id', auth()->id())->get();
 
 

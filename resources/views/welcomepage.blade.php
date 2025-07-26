@@ -293,7 +293,7 @@
         <!-- /trust -->
 
         <!-- featured course -->
-        <section class="featured-courses-section">
+        {{-- <section class="featured-courses-section">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Featured
@@ -348,7 +348,7 @@
                     <a href="course-list.html" class="btn btn-primary btn-md">View All Subject</a>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- /featured course -->
 
         <!-- community-to-learn -->

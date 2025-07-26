@@ -8,22 +8,11 @@
             <img src="{{ asset('img/shapes/withdraw-bg1.svg') }}" src="{{ asset('') }}" class="quiz-ans-bg1" alt="img">
             <img src="{{ asset('img/shapes/withdraw-bg2.svg') }}" class="quiz-ans-bg2" alt="img">
         </div>
-        {{-- <div class="row">
+        <div class="row mb-4">
             <div class="col-md-6 col-xl-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <span class="icon-box bg-primary-transparent me-2 me-xxl-3 flex-shrink-0"><img
-                                    src="{{ asset('img/icon/graduation.svg') }}" alt=""></span>
-                            <div>
-                                <span class="d-block">Enrolled Subject</span>
-                                <h4 class="fs-24 mt-1">{{ $courses->count() }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#generateSubject">Generate Subject</a>
             </div>
-            <div class="col-md-6 col-xl-4">
+            {{-- <div class="col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -50,13 +39,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div> --}}
-        <h5 class="mb-3 fs-18">Recently Generated Subject</h5>
+            </div> --}}
+        </div>
+        <h5 class="mb-3 fs-18">Generated Subject</h5>
         <div class="row">
             @forelse ($courses as $course)
                 <div class="col-xl-4 col-md-6">
-                    <div class="course-item">
+                    <div class="course-item" style="min-height: 275px">
                         <div class="course-img">
                             <a href="{{ route('users.coursedetails', ['id' => $course->id]) }}">
                                 <img src="{{ $course->CourseMedia }}" alt="img" class="img-fluid">
@@ -72,17 +61,9 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="course-rating">
-                                <span class="course-user">
-                                    <a href="javascript:void(0);">
-                                        <img src="{{ asset('img/user/default.jpg') }}" alt="img" class="img-fluid">
-                                    </a>
-                                </span>
-                                <a
-                                    href="javascript:void(0);">{{ $course->user->name . ' ' . $course->user->last_name ?? 'Unknown' }}</a>
+                                <p>Generated Date: <br>{{ \Carbon\Carbon::parse($course->created_at)->toDateString() }}</p>
                             </div>
                         </div>
-                        <a href="{{ route('users.coursedetails', ['id' => $course->id]) }}"
-                            class="btn buy-course-btn">Enroll Course Now</a>
                     </div>
                 </div>
             @empty
