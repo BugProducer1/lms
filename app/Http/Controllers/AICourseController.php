@@ -11,7 +11,7 @@ use App\Models\Lesson;
 use App\Models\Question;
 use App\Models\Choice;
 use Illuminate\Support\Facades\Auth;
-use App\Helpers\OllamaAI;
+use App\Helpers\GeminiAI;
 use Illuminate\Support\Str;
 
 class AICourseController extends Controller
@@ -32,7 +32,7 @@ class AICourseController extends Controller
         $query = $request->input('query');
 
 
-        $raw = OllamaAI::generateCourse($query);
+        $raw = GeminiAI::generateCourse($query);
 
 
         \Log::info("OLLAMA RESPONSE", ['response' => $raw]);
@@ -102,7 +102,7 @@ class AICourseController extends Controller
         }
 
         // return response()->json(['courseId' => $course->id]);
-        return response()->json('redirect', route('coursedetails/'.$course->id));
+        return response()->json('redirect', route('users.coursedetails/'.$course->id));
     }
 
 
