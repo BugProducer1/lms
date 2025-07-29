@@ -76,10 +76,10 @@
                                         class="d-inline-flex align-items-center {{ Request::is('student/quizattemps') ? 'active' : '' }}"><i
                                             class="isax isax-award5 me-2"></i>My Quiz Attemps</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="instructor-message.html" class="d-inline-flex align-items-center"><i
                                             class="isax isax-messages-35 me-2"></i>Messages</a>
-                                </li>
+                                </li> --}}
                             @else
                                 <p>Please complete your profile</p>
                         @endif

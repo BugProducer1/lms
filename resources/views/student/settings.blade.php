@@ -71,7 +71,7 @@
                                 <option value="F" {{ $user->gender == 'F' ? 'selected' : '' }}>Female</option>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3 d-none">
                             <label class="form-label">DOB <span class="text-danger">*</span></label>
                             <div class="input-icon-end position-relative">
                                 <input type="text" name="dob" value="{{ $user->dob }}" class="form-control"
@@ -79,11 +79,11 @@
                                 <span class="input-icon-addon"><i class="isax isax-calendar"></i></span>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3 ">
                             <label class="form-label">Student ID <span class="text-danger">*</span></label>
                             <input type="text" name="userID" value="{{ $user->userID }}" class="form-control">
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3 d-none">
                             <label class="form-label">Year Level <span class="text-danger">*</span></label>
                             <select name="" class="form-control" id="">
                                 <option value="">1st Year</option>
@@ -92,7 +92,7 @@
                                 <option value="">4th Year</option>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3  d-none">
                             <label class="form-label">Department <span class="text-danger">*</span></label>
                             <select name="" class="form-control" id="">
                                 <option value="">BSIT</option>
@@ -102,7 +102,16 @@
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-secondary rounded-pill" type="submit">Update Profile</button>
+                            @if ($user && $user->completed_profile == 1)
+                                @php
+                                    $submitText = 'Update Profile';
+                                @endphp
+                            @else
+                                @php
+                                    $submitText = 'Confirm';
+                                @endphp
+                            @endif
+                            <button class="btn btn-secondary rounded-pill" type="submit">{{ $submitText }}</button>
                         </div>
                     </div>
                 </form>

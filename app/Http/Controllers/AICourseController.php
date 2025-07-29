@@ -52,11 +52,7 @@ class AICourseController extends Controller
             'ShortDescription' => $data['short_description'] ?? '',
             'CourseDescription' => $data['description'] ?? '',
             'CourseVideo' => $data['courseVideo'] ?? null,
-            'CourseMedia' => isset($data['courseMedia'])
-            ? (Str::startsWith($data['courseMedia'], 'data:image')
-                ? $data['courseMedia']
-                : 'data:image/png;base64,' . $data['courseMedia'])
-            : null,
+            'CourseMedia' => $data['courseMedia'],
         ]);
 
         foreach ($data['learning_outcomes'] ?? [] as $outcome) {
