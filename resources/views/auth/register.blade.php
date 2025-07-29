@@ -129,7 +129,7 @@
                                     </div>
 
                                     <div class="mb-3 position-relative">
-                                        <label class="form-label">New Password <span class="text-danger">
+                                        <label class="form-label">Enter Password <span class="text-danger">
                                                 *</span></label>
                                         <div class="position-relative" id="passwordInput">
                                             <input type="password" name="password"
