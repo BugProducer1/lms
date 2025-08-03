@@ -131,7 +131,7 @@
 
         uploadBtn.addEventListener("click", function(e) {
             e.preventDefault();
-            imageInput.click(); // open file dialog
+            imageInput.click();
         });
 
         imageInput.addEventListener("change", function() {
@@ -139,8 +139,8 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    previewImage.src = e.target.result; // show preview
-                    base64Input.value = e.target.result; // save base64 to hidden input
+                    previewImage.src = e.target.result;
+                    base64Input.value = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }

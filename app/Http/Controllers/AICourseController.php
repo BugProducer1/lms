@@ -45,9 +45,20 @@ class AICourseController extends Controller
         }
 
 
+        $notes = '';
+
+        foreach ($data['topics'] ?? [] as $topicData) {
+            foreach ($topicData['lessons'] ?? [] as $lessonData) {
+                $lessonTitle = $lessonData['title'] ?? 'Untitled Lesson';
+                $lessonDesc = $lessonData['description'] ?? 'No description';
+                $notes .= "- {$lessonTitle}<br>{$lessonDesc}<br><br>";
+            }
+        }
+
         $course = Course::create([
             'user_id' => Auth::id() ?? 1,
             'Title' => $data['title'],
+            'notes' => $notes,
             'Category' => $data['category'] ?? 'General',
             'ShortDescription' => $data['short_description'] ?? '',
             'CourseDescription' => $data['description'] ?? '',

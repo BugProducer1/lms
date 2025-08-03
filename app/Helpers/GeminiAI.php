@@ -10,9 +10,10 @@ class GeminiAI
     public static function generateCourse(string $query): ?string
     {
         $prompt = "Generate a course about {$query} in JSON format. Include:
-        - title, category, short_description, description, courseVideo (YouTube link),
+        - title, category, short_description, description, courseVideo (YouTube link) make sure that link is not broken and its playable in youtube,
         - learning_outcomes (array),
         - topics (with lessons array: title, description, lessonVideo as YouTube link that is related to the lesson description pick the first one will appear),
+        - notes (Retrieve each generated lesson and provide an explanation for each one. Use <br> to separate each lesson and its explanation ),
         - a quiz (question, choices with text and is_correct at least 10 questions).
         Only return raw JSON output. Don't explain and Don't stop until all is generated.";
 
@@ -23,7 +24,7 @@ class GeminiAI
             return null;
         }
 
-        $url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={$apiKey}";
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}";
 
         $response = Http::timeout(900)
             ->withHeaders([
@@ -68,37 +69,57 @@ class GeminiAI
 
             return json_encode($courseData, JSON_PRETTY_PRINT);
         }
-
         return null;
     }
 
-    public static function generateImageFromDeepAI(string $title): string
+    public static function generateImageFromDeepAI(string $title): ?string
     {
-        $apiKey = env('DEEPAI_API_KEY');
+        $apiKey = env('GEMINI_API_KEY');
 
         if (!$apiKey) {
-            Log::error("DeepAI API Key not set in .env file. Using placeholder.");
-            return "https://placehold.co/800x450.png?text=Course+Cover";
+            Log::error("Gemini API Key not set in .env file. Using placeholder.");
+            return null;
         }
+
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key={$apiKey}";
+
+        $prompt = "Create a 3D rendered image for a course titled '{$title}'.";
 
         $response = Http::withHeaders([
-            'Api-Key' => $apiKey,
-        ])->post('https://api.deepai.org/api/text2img', [
-            'text' => "Course cover image for: {$title}",
+            'Content-Type' => 'application/json',
+        ])->post($url, [
+            'contents' => [
+                [
+                    'parts' => [
+                        ['text' => $prompt],
+                    ],
+                ],
+            ],
+            'generationConfig' => [
+                'responseModalities' => ['TEXT', 'IMAGE']
+            ]
         ]);
 
-        if ($response->successful()) {
-            $result = $response->json();
-            return $result['output_url'] ?? "https://placehold.co/800x450.png?text=Course+Cover";
+        if (!$response->successful()) {
+            Log::error("Gemini Image API error", [
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+            return null;
         }
 
-        Log::error("DeepAI API Error", [
-            'status' => $response->status(),
-            'body' => $response->body(),
-        ]);
+        $json = $response->json();
 
-        // Fallback to placeholder image
-        return "https://placehold.co/800x450.png?text=Course+Cover";
+        $base64 = $json['candidates'][0]['content']['parts'][1]['inlineData']['data'] ?? null;
+
+        if ($base64) {
+            // Return raw base64 string with image MIME type
+            return 'data:image/png;base64,' . $base64;
+        }
+
+        Log::warning("Gemini returned no image", ['response' => $json]);
+        return null;
     }
+
 
 }

@@ -129,7 +129,7 @@
                             <div class="tab-pane" id="notes" role="tabpanel">
                                 <div class="mb-0">
                                     <h6 class="fs-18 fw-semibold mb-1">Notes</h6>
-                                    <p>{{ strip_tags($course->ShortDescription) }}</p>
+                                    <p>{{ strip_tags($course->notes) }}</p>
                                 </div>
                             </div>
                             <div class="tab-pane" id="faq" role="tabpanel">
