@@ -81,7 +81,7 @@ class AICourseController extends Controller
             ]);
 
             foreach ($topicData['lessons'] ?? [] as $lessonData) {
-                Lesson::create([
+               $lesson = Lesson::create([
                     'topic_id' => $topic->id,
                     'title' => $lessonData['title'],
                     'lessonDescription' => $lessonData['description'] ?? '',
@@ -89,27 +89,49 @@ class AICourseController extends Controller
                         ? $lessonData['lessonVideo']
                         : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
                 ]);
+                if($lessonData['quiz']){
+                    \Log::warning("Lesson Quiz Found");
+                    foreach ($lessonData['quiz'] ?? [] as $final_q) {
+                            $question = Question::create([
+                                'topic_id' => $lesson->id,
+                                'question' => $final_q['module_question'],
+                            ]);
+
+                            foreach ($final_q['choices'] ?? [] as $c) {
+                                Choice::create([
+                                    'question_id' => $question->id,
+                                    'choice_text' => $c['text'],
+                                    'is_correct' => $c['is_correct'] ? 1 : 0,
+                                ]);
+                            }
+                    }
+                }
+                else{
+                    \Log::warning("Lesson Quiz Not Found");
+                }
+                // foreach ($lessonData['quiz'] ?? [] as $q) {
+                //     // $question = Question::create([
+                //     //     'course_id' => $lesson->id,
+                //     //     'question' => $q['module_question'],
+                //     // ]);
+
+                //     // foreach ($q['choices'] ?? [] as $c) {
+                //     //     Choice::create([
+                //     //         'question_id' => $question->id,
+                //     //         'choice_text' => $c['text'],
+                //     //         'is_correct' => $c['is_correct'] ? 1 : 0,
+                //     //     ]);
+                //     // }
+                // }
             }
         }
 
 
-        foreach ($data['quiz'] ?? [] as $q) {
-            $question = Question::create([
-                'course_id' => $course->id,
-                'question' => $q['question'],
-            ]);
 
-            foreach ($q['choices'] ?? [] as $c) {
-                Choice::create([
-                    'question_id' => $question->id,
-                    'choice_text' => $c['text'],
-                    'is_correct' => $c['is_correct'] ? 1 : 0,
-                ]);
-            }
-        }
 
         // return response()->json(['courseId' => $course->id]);
-        return response()->json('redirect', route('users.coursedetails/'.$course->id));
+        // return response()->json('redirect', route('coursedetails/'.$course->id));
+        return 1;
     }
 
 

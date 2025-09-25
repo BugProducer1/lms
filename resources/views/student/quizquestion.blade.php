@@ -59,7 +59,7 @@
                             <p class="fs-14">Don't worry, learn from this attempt and come back stronger next time!</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{ route('student.mycourses') }}" class="btn btn-secondary rounded-pill">
+                            <a href="javascript:history.back()" class="btn btn-secondary rounded-pill">
                                 <i class="isax isax-arrow-left-2 me-1 fs-10"></i>Back to Dashboard
                             </a>
                         </div>

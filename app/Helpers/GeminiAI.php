@@ -9,16 +9,47 @@ class GeminiAI
 {
     public static function generateCourse(string $query): ?string
     {
-        $prompt = "Generate a course about {$query} in JSON format. Include:
-        - title, category, short_description, description, courseVideo (YouTube link) make sure that link is not broken and its playable in youtube,
-        - learning_outcomes (array),
-        - topics (with lessons array: title, description, lessonVideo as YouTube link that is related to the lesson description pick the first one will appear),
-        - notes (Retrieve each generated lesson and provide an explanation for each one. Use <br> to separate each lesson and its explanation ),
-        - a quiz (question, choices with text and is_correct at least 10 questions).
-        Only return raw JSON output. Don't explain and Don't stop until all is generated.";
+        // $prompt = "Generate a course about {$query} in JSON format. Include:
+        // - title, category, short_description, description, courseVideo (YouTube link) make sure that link is not broken and its playable in youtube,
+        // - learning_outcomes (array),
+        // - topics (with lessons array: title, description, lessonVideo as YouTube link that is related to the lesson description pick the first one will appear) with a quiz (module_question, choices with text and is_correct at least 10 questions) each lessons,
+        // - notes (Retrieve each generated lesson and provide an explanation for each one. Use <br> to separate each lesson and its explanation ).
+        // Only return raw JSON output. Don't explain and Don't stop until all is generated.";
+
+        $prompt = "Generate a course about {$query} in raw JSON format only.
+        The JSON must include:
+
+        - title, category, short_description, description, courseVideo (a valid and playable YouTube link),
+        - learning_outcomes (array of strings),
+        - topics (array). Each topic must have:
+            - title,
+            - lessons (array). Each lesson must have:
+                - title,
+                - description,
+                - lessonVideo (a valid and playable YouTube link related to the lesson),
+                - quiz (array). The quiz must contain at least 5 questions.
+                Each question must follow this exact structure:
+                {
+                    \"module_question\": \"Question text\",
+                    \"choices\": [
+                    {\"text\": \"Choice 1\", \"is_correct\": true/false},
+                    {\"text\": \"Choice 2\", \"is_correct\": true/false},
+                    {\"text\": \"Choice 3\", \"is_correct\": true/false},
+                    {\"text\": \"Choice 4\", \"is_correct\": true/false}
+                    ]
+                }
+                - Exactly 4 choices per question, and only 1 correct choice.
+        - notes (Retrieve each generated lesson and provide an explanation for each one. Use <br> to separate each lesson and its explanation).
+
+        Important:
+        - Follow the exact JSON structure.
+        - Do not include comments, explanations, or text outside the JSON.
+        ";
+
 
         $apiKey = env('GEMINI_API_KEY');
 
+        // - a quiz (question, choices with text and is_correct at least 10 questions)
         if (!$apiKey) {
             Log::error("Gemini API Key not set in .env file");
             return null;

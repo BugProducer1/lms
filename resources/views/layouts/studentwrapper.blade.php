@@ -29,7 +29,8 @@
                     <div class="d-flex align-items-center">
                         <span
                             class="avatar flex-shrink-0 avatar-xxl avatar-rounded me-3 border border-white border-3 position-relative">
-                            <img src="#" alt="Profile" class="img-fluid">
+                            <img src="{{ $user->userPhoto ? $user->userPhoto : asset('img/user/user-02.jpg') }}"
+                                alt="Profile" class="img-fluid">
                             <span class="verify-tick"><i class="isax isax-verify5"></i></span>
                         </span>
                         <div>

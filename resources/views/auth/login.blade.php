@@ -59,8 +59,8 @@
                                 <div class="mentor-course text-center">
                                     <h3 class="mb-2">Welcome to <br> Virtual<span class="text-secondary"> Study</span>
                                         Buddy.</h3>
-                                    <p>Platform designed to help organizations, educators, and learners manage, deliver,
-                                        and track learning and training activities.</p>
+                                    <p>An AI-powered platform that helps organizations, educators, and learners create,
+                                        deliver, and track lessons and training activities.</p>
                                 </div>
                             </div>
                         </div>

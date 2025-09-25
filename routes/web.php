@@ -26,6 +26,7 @@ Route::get('/', function () {
     $courses = Course::with('user')->get();
     return view('welcomepage', compact('courses'));
 });
+Route::get('/topics/{topic}/quiz', [CourseController::class, 'getTopicQuiz']);
 
 Route::get('/coursedetails/{id}', [CourseController::class, 'show'])->name('users.coursedetails');
 
@@ -42,9 +43,11 @@ Route::middleware(['auth', 'role.Instructor'])->prefix('instructor')->group(func
     Route::get('instructorquiz', [CourseController::class, 'instructorquiz'])->name('instructor.quiz');
     Route::get('quizresults/{courseId}', [CourseController::class, 'quizresult'])->name('instructor.quizresult');
 
-    Route::get('/instructorprofile', function(){
-        return view('admin.profile');
-    })->name('instructor.profile');
+    Route::get('/instructorprofile/{id}', [CourseController::class, 'userProfile'])->name('instructor.profile');
+
+    // Route::get('/instructorprofile', function(){
+    //     return view('admin.profile');
+    // })->name('instructor.profile');
 
     Route::get('changepassword', function(){
         return view('admin.changepassword');

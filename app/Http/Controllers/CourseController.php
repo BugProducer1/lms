@@ -145,20 +145,21 @@ class CourseController extends Controller
 
         // Get courses created by the current user
         $courses = Course::with([
-            'faqs',
             'learningOutcomes',
             'questions.choices',
             'topics.lessons'
-        ])->where('user_id', auth()->id())->get();
+        ]);
 
         $courseCount = $courses->count();
 
         $courseIds = $courses->pluck('id');
 
+        $studentList = DB::table('users')->where('role','student')->get();
+
         // Count total unique students across all courses
-        $studentCount = DB::table('enrollments')
-            ->whereIn('course_id', $courseIds)
-            ->distinct('user_id')
+        $studentCount = DB::table('users')
+            ->where('role', 'student')
+            ->distinct('id')
             ->count('user_id');
 
         // Attach enrollment count to each course manually
@@ -168,7 +169,7 @@ class CourseController extends Controller
                 ->count();
         }
 
-        return view('admin.dashboard', compact('courses', 'user', 'courseCount', 'studentCount'));
+        return view('admin.dashboard', compact('courses', 'user', 'courseCount', 'studentCount','studentList'));
     }
 
     public function courseList()
@@ -236,6 +237,11 @@ class CourseController extends Controller
         return view('admin.quizresult', compact('course', 'results'));
     }
 
+    public function userProfile($id){
+         $studentList = DB::table('users')->where('id',$id)->first();
+         $courseList = DB::table('courses')->where('user_id', $id)->get();
+        return view('admin.profile', compact('studentList', 'courseList'));
+    }
     public function show($id)
     {
         $course = Course::with([
@@ -284,6 +290,23 @@ class CourseController extends Controller
 
         return view('student.coursewatch', compact('course'));
     }
+
+    public function getTopicQuiz($topicId)
+    {
+        $topic = Topic::with(['lessons.questions.choices'])->findOrFail($topicId);
+
+
+        $questions = $topic->lessons->flatMap(function ($lesson) {
+            return $lesson->questions;
+        });
+
+        return view('student.partials.topic_quiz', [
+            'topic' => $topic,
+            'questions' => $questions
+        ]);
+    }
+
+
 
     public function settings(){
         $user = auth()->user();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-    protected $fillable = ['course_id', 'title'];
+    protected $fillable = ['course_id', 'title', 'topicStatus'];
 
     public function course()
     {
@@ -16,6 +16,11 @@ class Topic extends Model
 
     public function lessons()
     {
-        return $this->hasMany(Lesson::class);
+        return $this->hasMany(Lesson::class, 'topic_id');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'topic_id');
     }
 }

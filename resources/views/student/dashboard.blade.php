@@ -159,12 +159,14 @@
                     success: function(response) {
                         $('#generate').show();
                         $('#loadGenerate').hide();
-                        window.location.href = response.redirect;
+                        window.history.go(-1);
+                        console.log(response);
                     },
                     error: function(response) {
                         $('#generate').show();
                         $('#loadGenerate').hide();
                         console.log('Error');
+                        console.log(response);
                     }
                 });
             });

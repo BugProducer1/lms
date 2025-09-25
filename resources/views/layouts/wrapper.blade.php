@@ -38,18 +38,13 @@
                         </span>
                         <div>
 
-                            <h5 class="mb-1 text-white d-inline-flex align-items-center">{{ $user->name }}
-                                {{ $user->last_name }}<a href="instructor-profile.html" class="link-light fs-16 ms-2"><i
-                                        class="isax isax-edit-2"></i></a></h5>
-                            <p class="text-light">{{ $user->role }}</p>
+                            <h5 class="mb-1 text-white d-inline-flex align-items-center">Admin<a
+                                    href="instructor-profile.html" class="link-light fs-16 ms-2"></a></h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="d-flex align-items-center flex-wrap gap-3 justify-content-md-end">
-                        <a href="{{ route('instructor.addcourse') }}" class="btn btn-secondary rounded-pill">Add New
-                            Subject</a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -67,26 +62,6 @@
                                         class="d-inline-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}"><i
                                             class="isax isax-grid-35 me-2"></i>Dashboard</a>
                                 </li>
-                                {{-- <li>
-                                    <a href="{{ route('instructor.profile') }}"
-                                        class="d-inline-flex align-items-center {{ Request::is('instructorprofile') ? 'active' : '' }}"><i
-                                            class="fa-solid fa-user me-2 "></i>My
-                                        Profile</a>
-                                </li> --}}
-                                <li>
-                                    <a href="{{ route('instructor.courselist') }}"
-                                        class="d-inline-flex align-items-center {{ Request::is('courselist') ? 'active' : '' }}"><i
-                                            class="isax isax-teacher5 me-2"></i>Subject</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('instructor.quiz') }}"
-                                        class="d-inline-flex align-items-center {{ Request::is('instructorquiz') ? 'active' : '' }}"><i
-                                            class="isax isax-award5 me-2"></i>Quiz</a>
-                                </li>
-                                <li>
-                                    <a href="instructor-message.html" class="d-inline-flex align-items-center"><i
-                                            class="isax isax-messages-35 me-2"></i>Messages</a>
-                                </li>
                             @else
                                 <p>Please complete your profile</p>
                             @endif
@@ -94,11 +69,6 @@
                         <hr>
                         <h6 class="mb-3">Account Settings</h6>
                         <ul>
-                            <li>
-                                <a href="{{ route('admin.settings') }}"
-                                    class="d-inline-flex align-items-center {{ Request::is('admin/settings') ? 'active' : '' }}"><i
-                                        class="isax isax-setting-25 me-2"></i>Settings</a>
-                            </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
